@@ -12,6 +12,21 @@
 \usepackage{alltt}
 \usepackage{here}
 \usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{here}
+\usepackage{amsmath, amssymb}
+\usepackage{indentfirst}
+\usepackage{type1cm}
+\usepackage{yquant}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+ \renewcommand{\algorithmicrequire}{\textbf{Input: }}
+ \renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\graphicspath{{./img}}
 \usepackage{./sty/ncodeline}
 %\usepackage[dvipdfmx, colorlinks, breaklinks,%
 \usepackage[dvipdfmx, breaklinks,%
@@ -89,13 +104,13 @@ pdftitle={zomi's Bachelor's Thesis},%
 \usepackage{framed}
 
 % タイトル
-\def\title{量子インターネットシミュレーションのためのトラフィック行列生成}
+\def\title{分散量子計算のための量子ビット割り当て}
 % 英語タイトル
-\def\etitle{Traffic Matrix Generation for Quantum Internet Simulation}
+\def\etitle{Qubit Allocation For Distributed Quantum Computing}
 % 著者(日本語)
-\def\author{種谷 望}
+\def\author{中井 慎}
 % 著者(英語)
-\def\eauthor{Nozomi Tanetani}
+\def\eauthor{Makoto Nakai}
 % 学部・研究科
 \def\dept{慶應義塾大学 環境情報学部4年}
 % 学部・研究科(英語)
@@ -127,11 +142,11 @@ pdftitle={zomi's Bachelor's Thesis},%
 
 \pagenumbering{arabic}
 \input{src/1_introduction}
-\input{src/2_theoryOfQuantumInformation}
-\input{src/3_theoryOfClassicalTeletraffic}
-\input{src/4_problemDefinitionAndProposal}
-\input{src/5_implementation}
-\input{src/6_evaluation}
+\input{src/2_background}
+\input{src/3_related_works}
+\input{src/4_problem_definition_and_proposal}
+\input{src/5_evaluation}
+\input{src/6_discussion}
 \input{src/7_conclusion}
 
 \vspace{-5mm}
@@ -140,7 +155,7 @@ pdftitle={zomi's Bachelor's Thesis},%
 \input{bib/biblio}\thispagestyle{plain}%bibtex
 
 %\input{src/acknowledgement}
-\input{src/appendix}
+%\input{src/appendix}
 
 \end{document}
 

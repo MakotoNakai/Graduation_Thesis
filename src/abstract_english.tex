@@ -10,24 +10,17 @@ Abstract of Bachelor's Thesis - Academic Year 2021
 \end{center}
 
 ~ \\
-The Quantum Internet is a new Internet that uses quantum entanglement, and is expected to be a technology that will make up for the weaknesses of the current Internet.
-It is expected to make up for the weaknesses of the current Internet, such as stronger cryptographic algorithms, faster resolution of consensus problems, and increased computing power through distributed quantum computation.
-However, practical applications are still far away and are still in the experimental stage.
-
-One of the necessary elements for practical use is traffic testing.
-This is a test of the network, to make sure that protocols and other aspects work correctly when users use them.
-For traffic testing, we need traffic data, which can be either real data or generated stochastically.
-In the case of Quantum Internet, real data does not exist, so we need to generate data.
-
-In this project, I defined "traffic" in the Quantum Internet, and applied the traffic data generation using the gravity model, which is the mainstream in the current Internet, to the Quantum Internet.
-I also implemented this model in QUISP, a Quantum Internet simulator ran on OMNeT++, and tested it.
-In this way, It have been shown the basis for traffic testing in the Quantum Internet.
+ Quantum computers are theoretically capable of solving some intractable problems for classical computers including the factoring problem and the digital quantum simulations in a polynomial time, and large-scale quantum computing is the key to perform computation that even a supercomputer cannot handle.   Two approaches for large-scale quantum computing have been proposed. One is to build a single large quantum processor, and the other is to perform quantum computing over more than one quantum processors that are connected via communication links.  The later approach is considered as more practical because it requires less number of qubits and error rate, which are the two most challenging aspects of building a hardware for large-scale quantum processor.
+ 
+ However, only few works have investigated the procedure to perform distributed quantum computing in the real world, especially how to convert a user program which includes the quantum circuit to the executable form onto distributed quantum computers.
+ 
+ This work proposes the heuristic optimization algorithm for qubit allocation for distributed quantum computing which aim to shorten the total execution time of the given quantum circuit, and demonstrated that the qubit allocation by this algorithm achieve reduction of the total execution time compared to the random qubit allocation by numerical simulation.
 ~ \\
 Keywords : \\
-\underline{1. Quantum Internet},
-\underline{2. Traffic Matrix},
-\underline{3. Gravity Model},
-\underline{4. Traffic Generation}
+\underline{1. Quantum computing},
+\underline{2. Distributed system},
+\underline{3. Task allocation},
+\underline{4. Simulated Annealing}
 \begin{flushright}
 \edept \\
 \eauthor

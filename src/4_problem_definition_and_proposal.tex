@@ -1,0 +1,163 @@
+\chapter{Problem Definition and Proposal}
+\label{problem_definition_and_proposal}
+
+\section{Problem Definition and Proposal}
+
+This chapter explains a new problem about the qubit allocation in the \\ distributed quantum computing system and propose the solution for that problem.
+
+\subsection{Problem Definition}
+
+Algorithms regarding distributed computing aim to achieve efficiency in terms of reduction in the total execution time and reliability compared to the case of execution of the same tasks on the single processor. In order to execute distributed computing, a collection of tasks should be allocated onto multiple processors limited by a certain network topology.  These processors might have different properties such as their execution time and  their memory size. 
+
+Previous works about qubit allocation on a single quantum processor tries to improve the fidelity of the output quantum state even in the presence of hardware noise, which is "reliability" for quantum computing on a current quantum processor.  Those about quantum circuit distribution (or qubit allocation) for distributed quantum computing tries to minimize the number of interprocessor communication, in order to reduce the  communication error, which is predicted to be worse than that in a local processor.
+
+However, qubit allocation for distributed quantum computing to minimize the total execution time has not been investigated, even though this is the other optimization criteria for task allocation problem in the classical setting.
+
+\subsection{Formulation as An Optimization Problem}
+
+Suppose a distributed quantum computing system consists of $N$ quantum processors connected via communication links. Each quantum processor has limited number of qubits and execution time.
+
+A quantum circuit in the program consists of several qubits and $M$ gates, including CNOTs which corresponds to an interaction graph $G(V, E)$. $V$ represents a set of qubits and $E$ represents set of two qubits involved in each CNOT gate.  $q_i \in V$ is labeled by the qubit index, and $(control, target) \in E$ is labeled by control-target relationship of all the CNOT gates.
+
+The problem is how to allocate each qubits in the given quantum circuit to which processor with varying execution time in order to minimize the total execution time. This problem can be formulated as an optimization problem, which requires a cost function, which is the value to either maximize or minimize to acquire the optimal solution.
+
+\newpage
+\subsection{Objective Function}
+
+Suppose $A$ be the optimal assignment such that $A(q_i) = p_j$ if a qubit $q_i$ in the given quantum circuit to a quantum processor $p_j$. Qubits allocated to a quantum processor $p_j$ is denoted as $qubits_j$, single qubit gates allocated to a qubit $q_i$ is $gates_i$ and the execution time on a quantum processor $q_j$ is $time_j$.
+
+The cost of executing all single-qubit gates on a qubit $q_i$ on a quantum processor $p_j$ is 
+$$\sum_{gate \in gates_i} time_j$$
+Therefore, the cost of executing all the single-qubit gates on all the qubits allocated on quantum processor $p_j$ is 
+$$GATECOST_j = \sum_{qubit \in qubits_j} \sum_{gate \in gates_{qubit}} time_j$$
+
+Suppose a CNOT gate CNOT(control, target) involves two qubits, which are control $\in qubits_s$ and target $\in qubits_t$ and all the CNOT gates in a quantum processor $p_j$ are denoted as $CNOTs_{j}$.
+
+The communication cost in a quantum processor $p_j$ is 
+$$COMMCOST_j = \sum_{ \substack{CNOT (control, target) \in CNOTs_{j} \\ control \in q_s \\ target \in q_t}} pathlength(s, k)$$
+$pathlength$ is the length of the path between the processor $s$ and the processor $t$ on the given network topology, and the processor $j$ is same as at least either the processor $s$ or the processor $t$.
+
+Thus, the total cost on a quantum processor $p_j$ is 
+$$COST_j = GATECOST_j + COMMCOST_j$$
+
+Both execution of single qubit gates and communication with other processors affect the total execution time on each processor, and because the processor with the greatest cost will decide the total execution time on the whole distributed quantum system, the following value should be calculated.
+$$MAXCOST = \max \{COST_j | 1 \leq j \leq N\}$$
+
+Also, minimizing this value will reduce both the execution time for quantum gates execution and interprocessor communication, and the objective function of this problem is 
+$$ min\,MAXCOST$$
+
+\newpage
+\subsection{Simulated Annealing}
+Simulated annealing is a heuristic algorithm which reaches to the global optimal solution in some cases [15][16]. Its idea comes from cooling the molten metal until it gains crystal structure, so it calculates the values of "temperature", which how long the optimization has been executed and "energy" which evaluates how close the current answer is to the optimal solution.  The algorithm starts with high temperature and energy, and as the temperature becomes lower,  the solution changes randomly and the combination and the answer after randomization process is accepted even its energy becomes higher than its previous answer in order to avoid being stuck in the local minimum.
+
+Here is the pseudocode for the simulated annealing algorithm.
+
+\begin{algorithm}
+ \caption{Simulated Annealing}
+  \begin{algorithmic}[1]
+  \Require A random allocation A, temperature T, iteration number IterNum
+  \Ensure The optimal allocation A'
+ \Function {SimulatedAnnealing}{A, T, IterNum}
+  \State{A' = A}
+ \For {iter := 1 to IterNum}
+     \State{temp := T * (1$-$ iter/IterNum)}
+     \State{copyA $\leftarrow$ copy(A')}
+     \State{newA $\leftarrow$ move(copyA)}
+     \State{eng $\leftarrow$ calc\_energy(copyA)}
+     \State{neweng $\leftarrow$ calc\_energy(newA)}
+     \If {accept\_prob(eng, neweng, temp) $>$ randomvalue(0, 1)}
+     	\State{A' = NewA}
+    \EndIf
+ \EndFor
+       \State \Return A'
+\EndFunction
+ \end{algorithmic}
+ \end{algorithm}
+ 
+ \begin{algorithm}
+ \caption{Finding a neighbor state}
+  \begin{algorithmic}[1]
+ \Require Processor list P $\{P_0, P_1, \dots P_N\}$, initial allocation A  $\{P_0:qubits_0, P_1:qubits_1, \dots P_n:qubits_n\}$
+ \Ensure New allocation A
+ \Function {move}{}
+ \State{$P_i \leftarrow$ a randomly selected processor}
+ \State{$P_j \leftarrow$ another randomly selected processor}
+ \State{$qindex_i \leftarrow$ a randomly selected qubit index from 0 to $len(qubits_i)$}
+ \State{$qindex_j \leftarrow$ a randomly selected qubit index from 0 to $len(qubits_j)$}
+ \State{$A[P_i][qindex_i], A[P_j][qindex_j] = A[P_j][qindex_j], A[P_i][qindex_i]$}
+ \State \Return A
+  \EndFunction
+   \end{algorithmic}
+ \end{algorithm}
+  
+ \begin{algorithm}
+ \caption{Calculating the energy value}
+  \begin{algorithmic}[1]
+ \Require initial allocation $A$  $\{P_0:qubits_0, P_1:qubits_1, \dots P_n:qubits_n\}$, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,a quantum gate list $gate\_list$ $\{gate_0, \dots, gate_N\}$,  \,\,\,\,\,\,\,\,\,\,\,\,\,\, \,\,\,\,\,\,\,\,\,\,\,\,\,\, \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, \,\,\,\,\,\,\,\,\,\,\,\,\,\,an execution time list $time\_list$ [$time\_0, \dots time_N$], network topology N
+ \Ensure An energy value $E$
+ \Function {calc\_energy}{A, $gate\_list$}
+ \State{$processor\_list \leftarrow list(A.keys())$}
+ \State{$gate\_cost\_list  \leftarrow [0 for processor in processor\_list]$}
+ \State{$comm\_cost\_list \leftarrow [0 for processor in processor\_list]$}
+ \For {$processor\_id$ := $0$ to $len(processor\_list) - 1$}
+ 	\For {$gate$ := $gate_0$ to $gate_N$}
+		\If{$gate.name \neq$ CNOT and $gate.index \in$ A[processor\_id]}
+			\State{$gate\_cost\_list[processor\_id]$ += $time\_list[processor\_id]$}
+		\EndIf
+	\EndFor
+ \EndFor
+ \State{$distance\_matrix \leftarrow N.distance\_matrix$}
+ \For {$processor\_id$ := $0$ to $len(processor\_list) - 1$}
+ 	\For {$gate$ := $gate_0$ to $gate_N$}
+		\If{$gate.name$ = CNOT}
+			\If{$gate.index, gate.target\_index \in A[processor\_id]$} 
+				\State{$comm\_cost\_list[processor\_id]$ += $0$}
+			\ElsIf{$gate.index \in A[processor\_id]$}
+				\For{$processor'\_id := 0$ to $len(processor\_list) - 1$}
+					\If{$gate.target\_index \in A[processor'\_id]$} 
+					\State{$distance  \leftarrow distance\_matrix[processor\_id][processor'\_id]$}
+					\State{$comm\_cost\_list[processor\_id]$ += $distance$}
+					\EndIf
+				\EndFor
+			\ElsIf{$gate.gate\_index \in A[processor\_id]$}
+				\For{$processor'\_id := 0$ to $len(processor\_list) - 1$}
+					\If{$gate.index \in A[processor'\_id]$} 
+					\State{$distance \leftarrow distance\_matrix[processor'\_id][processor\_id]$}
+					\State{$comm\_cost\_list[processor\_id]$ += $distance$}
+					\EndIf
+				\EndFor
+			\EndIf
+		\EndIf
+	\EndFor
+ \EndFor
+ 
+ \For {$processor\_id$ := $0$ to $len(processor\_list) - 1$}
+ 	\State{$gate\_cost  \leftarrow gate\_cost\_list[processor\_id]$}
+	\State{$comm\_cost  \leftarrow comm\_cost\_list[processor\_id]$}
+ 	\State{$cost\_list[processor\_id] \leftarrow gate\_cost + comm\_cost$}
+\EndFor
+\State \Return $\max cost\_list$
+  \EndFunction 
+ \end{algorithmic}
+ \end{algorithm}
+ \newpage
+ \begin{algorithm}
+ \caption{Calculating the acceptance probability}
+  \begin{algorithmic}[1]
+  \Require current energy value $cur\_eng$, new energy value $new\_eng$, current temperature $temp$
+  \Ensure an acceptance probability $prob$
+  \Function {accept\_prob}{cur\_eng, new\_eng, temp}
+ 	\If {cur\_eng $<$ new\_eng}
+		\State \Return 1
+	\Else
+		\State \Return $\exp{(-(new\_eng - cur\_eng)/temp)}$
+	\EndIf
+   \EndFunction 
+  \end{algorithmic}
+ \end{algorithm}
+
+
+%%% Local Variables:
+%%% mode: japanese-latex
+%%% TeX-master: "../bthesis"
+%%% End:
