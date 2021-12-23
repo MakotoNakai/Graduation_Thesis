@@ -1,14 +1,14 @@
 \chapter{Related Works}
 \label{related works}
 
-\subsection{Performance of  An Interprocessor CNOT Gate}
+\section{Performance of  An Interprocessor CNOT Gate}
 Both the execution time and required amount of resource for inter-node communication are important because it significantly affects the total execution time and the whole architecture of a distributed quantum computing system. 
 
  The work [19] proved that one bit of classical communication in each direction and one bell pair are sufficient for the non-local CNOT gate.  It also proposes the optimal implementation of a non-local CNOT in terms of communication overhead and the number of required quantum gates. 
  
  The work [20] compared the performance between "telegate" and "teledata" approach in terms of various number of data qubits, communication qubits, and its network topology.  It presents the fact that the teledata approach is faster than the telegate approach, and that decomposition of a quantum gate will improve the performance.  It also shows that each node should have a few logical qubits and two communication qubits.
 
-\subsection{Minimization of the Number of Interprocessor Communication}
+\section{Minimization of the Number of Interprocessor Communication}
 
 Dividing the given quantum circuit into several fragments one of the main jobs for a distributed quantum compiler.  In the process of partitioning the given quantum circuit, the distributed quantum compiler has to minimize the number of inter-processor communication in order to reduce the delay in the entire circuit execution.  
 
@@ -27,7 +27,7 @@ The work [26] proposed a new scheme for reducing interprocessor communication ca
 The work [26] suggested another algorithm for minimizing the interprocessor communication which consists of two phases by using the connectivity-matrix-based representation of a quantum circuit.
 In the first phase, it proposed two objective functions to minimize the number of non-local CNOTs and difference between the number of qubits in two partitioning.  In the second phase, two heuristics were also proposed two other heuristics to minimize the number of quantum teleportation required.
 
-\subsection{Distributed Quantum Compiler}
+\section{Distributed Quantum Compiler}
 
 The work [27] discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
 

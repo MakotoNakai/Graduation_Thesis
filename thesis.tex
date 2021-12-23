@@ -1,13 +1,12 @@
-\documentclass[12pt]{report}
+\documentclass[12pt, dvipdfmx]{report}
 \usepackage{comment}
 \usepackage{./sty/eclepsf}
 \usepackage{tascmac}
 \usepackage{tabularx}
 \usepackage{listliketab}
 \usepackage[longnamesfirst]{natbib}
-\usepackage[dvipdfmx]{graphics}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage[dvipdfmx]{color}
+\usepackage{graphicx}
+\usepackage{color}
 \usepackage{subfigure}
 \usepackage{alltt}
 \usepackage{here}
@@ -15,7 +14,6 @@
 \usepackage{graphicx}
 \usepackage{here}
 \usepackage{amsmath, amssymb}
-\usepackage{indentfirst}
 \usepackage{type1cm}
 \usepackage{yquant}
 \usepackage{tikz}
@@ -26,13 +24,13 @@
  \renewcommand{\algorithmicrequire}{\textbf{Input: }}
  \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
-\graphicspath{{./img}}
+\graphicspath{./img/}
 \usepackage{./sty/ncodeline}
 %\usepackage[dvipdfmx, colorlinks, breaklinks,%
 \usepackage[dvipdfmx, breaklinks,%
 bookmarks=true, bookmarksnumbered=true,%
 bookmarkstype=toc, bookmarksopen=true,bookmarksopenlevel=3,%
-pdftitle={zomi's Bachelor's Thesis},%
+pdftitle={dave's Bachelor's Thesis},%
 ]{hyperref}
 \usepackage{bookmark}
 
@@ -96,6 +94,7 @@ pdftitle={zomi's Bachelor's Thesis},%
 \renewcommand{\topfraction}{.99}
 \renewcommand{\textfraction}{.0}
 \renewcommand{\floatpagefraction}{.99}
+\setlength{\headheight}{15pt}
 
 
 \pagestyle{fancy}
@@ -137,8 +136,8 @@ pdftitle={zomi's Bachelor's Thesis},%
 \clearpage
 \listoftables\thispagestyle{plain} %表目次
 \clearpage
-\lstlistoflistings\thispagestyle{plain}%コード目次
-\clearpage
+%\lstlistoflistings\thispagestyle{plain}%コード目次
+%\clearpage
 
 \pagenumbering{arabic}
 \input{src/1_introduction}
@@ -154,7 +153,7 @@ pdftitle={zomi's Bachelor's Thesis},%
 \nocite{*}
 \input{bib/biblio}\thispagestyle{plain}%bibtex
 
-%\input{src/acknowledgement}
+\input{src/acknowledgement}
 %\input{src/appendix}
 
 \end{document}

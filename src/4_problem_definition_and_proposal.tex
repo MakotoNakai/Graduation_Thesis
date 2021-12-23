@@ -69,7 +69,7 @@ Here is the pseudocode for the simulated annealing algorithm.
      	\State{A' = NewA}
     \EndIf
  \EndFor
-       \State \Return A'
+       \State {return  A'}
 \EndFunction
  \end{algorithmic}
  \end{algorithm}
@@ -85,7 +85,7 @@ Here is the pseudocode for the simulated annealing algorithm.
  \State{$qindex_i \leftarrow$ a randomly selected qubit index from 0 to $len(qubits_i)$}
  \State{$qindex_j \leftarrow$ a randomly selected qubit index from 0 to $len(qubits_j)$}
  \State{$A[P_i][qindex_i], A[P_j][qindex_j] = A[P_j][qindex_j], A[P_i][qindex_i]$}
- \State \Return A
+ \State {return  A}
   \EndFunction
    \end{algorithmic}
  \end{algorithm}
@@ -136,7 +136,7 @@ Here is the pseudocode for the simulated annealing algorithm.
 	\State{$comm\_cost  \leftarrow comm\_cost\_list[processor\_id]$}
  	\State{$cost\_list[processor\_id] \leftarrow gate\_cost + comm\_cost$}
 \EndFor
-\State \Return $\max cost\_list$
+\State {return $\max cost\_list$}
   \EndFunction 
  \end{algorithmic}
  \end{algorithm}
@@ -148,9 +148,9 @@ Here is the pseudocode for the simulated annealing algorithm.
   \Ensure an acceptance probability $prob$
   \Function {accept\_prob}{cur\_eng, new\_eng, temp}
  	\If {cur\_eng $<$ new\_eng}
-		\State \Return 1
+		\State{return 1}
 	\Else
-		\State \Return $\exp{(-(new\_eng - cur\_eng)/temp)}$
+		\State{return $\exp{(-(new\_eng - cur\_eng)/temp)}$}
 	\EndIf
    \EndFunction 
   \end{algorithmic}
