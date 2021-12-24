@@ -3,9 +3,11 @@
 
 \section{Background}
 \label{introduction:background}
- Quantum computers are theoretically capable of solving some intractable problems for classical computers including the factoring problem and the digital quantum simulations in a polynomial time, and large-scale quantum computing is the key to perform computation that even a supercomputer cannot handle.   Two approaches for large-scale quantum computing have been proposed. One is to build a single large quantum processor, and the other is to perform quantum computing over more than one quantum processors that are connected via communication links.  The later approach is considered as more practical because it requires less number of qubits and error rate, which are the two most challenging aspects of building a hardware for large-scale quantum processor.
+ In 1982, the idea of quantum computing was proposed by Richard Feynman \cite{Feynman} with the intention of simulating quantum system whose dimension grows exponentially if the number of particles increase.  In 1990s, quantum computers are proved to be theoretically capable of solving some intractable problems for classical computers including the factoring problem \cite{Shor} and the digital quantum simulations in a polynomial time \cite{Lloyd}, and large-scale quantum computing is the key to perform computation that even a supercomputer cannot handle.  The hardware for quantum computing has been developed using various physical architecture such as superconducting system \cite{superconducting}, ion trap \cite{iontrap}, nvdiamond \cite{nvdiamond}.
  
- However, unlike the previous works about the system for quantum computing on a single quantum processor,  only few works have investigated the procedure to perform distributed quantum computing in the real world, especially how to convert an user program which includes the quantum circuit to the executable form onto distributed quantum computers.
+  Two approaches for large-scale quantum computing have been proposed. One is to build a single large quantum processor \cite{rsa}, and the other is to perform quantum computing over more than one quantum processors that are connected via communication links \cite{grover}.  
+ 
+ However, unlike the previous works about the system for quantum computing on a single quantum processor \cite{qubitallocation, noisy},  only few works have investigated the procedure to perform distributed quantum computing in the real world \cite{qmpi}, especially how to convert an user program which includes the quantum circuit to the executable form onto distributed quantum computers.
 
 \section{Research Contribution}
 \label{introduction:research_contribution}

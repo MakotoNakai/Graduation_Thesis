@@ -5,15 +5,17 @@
 
 This chapter explains a new problem about the qubit allocation in the \\ distributed quantum computing system and propose the solution for that problem.
 
-\subsection{Problem Definition}
+\section{Problem Definition}
 
-Algorithms regarding distributed computing aim to achieve efficiency in terms of reduction in the total execution time and reliability compared to the case of execution of the same tasks on the single processor. In order to execute distributed computing, a collection of tasks should be allocated onto multiple processors limited by a certain network topology.  These processors might have different properties such as their execution time and  their memory size. 
+ In order to execute distributed computing, a collection of tasks should be allocated onto multiple processors limited by a certain network topology.  These processors might have different properties such as their execution time and their memory size.  Algorithms regarding distributed computing aim to achieve efficiency in terms of either reduction in the total execution time or increase of total reliability compared to the case of execution of the same tasks on the single processor.
 
-Previous works about qubit allocation on a single quantum processor tries to improve the fidelity of the output quantum state even in the presence of hardware noise, which is "reliability" for quantum computing on a current quantum processor.  Those about quantum circuit distribution (or qubit allocation) for distributed quantum computing tries to minimize the number of interprocessor communication, in order to reduce the  communication error, which is predicted to be worse than that in a local processor.
+Previous works about qubit allocation on a single quantum processor tries to improve the fidelity of the output quantum state even in the presence of physical noise on a hardware, which is "reliability" for quantum computing, and these works can be directly applied to improve the total fidelity even in the case of distributed quantum computing if the whole quantum computing cluster is considered as a single larger-scale quantum processor .
 
-However, qubit allocation for distributed quantum computing to minimize the total execution time has not been investigated, even though this is the other optimization criteria for task allocation problem in the classical setting.
-
-\subsection{Formulation as An Optimization Problem}
+ However, qubit allocation for distributed quantum computing to minimize the total execution time has not been investigated, even though this is one of the two major optimization criteria for task allocation problem in the classical setting. 
+ 
+ This work formulates the problem of qubit allocation on multiple quantum processors with varying execution time as an optimization problem and define its objective function.  It also demonstrates the validity of the proposed method by numerical simulation, which adopted simulated annealing as a heuristic optimization algorithm.
+ 
+\section{Formulation as An Optimization Problem}
 
 Suppose a distributed quantum computing system consists of $N$ quantum processors connected via communication links. Each quantum processor has limited number of qubits and execution time.
 
@@ -21,9 +23,7 @@ A quantum circuit in the program consists of several qubits and $M$ gates, inclu
 
 The problem is how to allocate each qubits in the given quantum circuit to which processor with varying execution time in order to minimize the total execution time. This problem can be formulated as an optimization problem, which requires a cost function, which is the value to either maximize or minimize to acquire the optimal solution.
 
-\newpage
-\subsection{Objective Function}
-
+\section{Objective Function}
 Suppose $A$ be the optimal assignment such that $A(q_i) = p_j$ if a qubit $q_i$ in the given quantum circuit to a quantum processor $p_j$. Qubits allocated to a quantum processor $p_j$ is denoted as $qubits_j$, single qubit gates allocated to a qubit $q_i$ is $gates_i$ and the execution time on a quantum processor $q_j$ is $time_j$.
 
 The cost of executing all single-qubit gates on a qubit $q_i$ on a quantum processor $p_j$ is 
@@ -47,8 +47,9 @@ Also, minimizing this value will reduce both the execution time for quantum gate
 $$ min\,MAXCOST$$
 
 \newpage
-\subsection{Simulated Annealing}
-Simulated annealing is a heuristic algorithm which reaches to the global optimal solution in some cases [15][16]. Its idea comes from cooling the molten metal until it gains crystal structure, so it calculates the values of "temperature", which how long the optimization has been executed and "energy" which evaluates how close the current answer is to the optimal solution.  The algorithm starts with high temperature and energy, and as the temperature becomes lower,  the solution changes randomly and the combination and the answer after randomization process is accepted even its energy becomes higher than its previous answer in order to avoid being stuck in the local minimum.
+
+\section{Simulated Annealing}
+Simulated annealing is a heuristic algorithm which reaches to the global optimal solution in some cases \cite{simulatedannealing, Boltzmann}. Its idea comes from cooling the molten metal until it gains crystal structure, so it calculates the values of "temperature", which how long the optimization has been executed and "energy" which evaluates how close the current answer is to the optimal solution.  The algorithm starts with high temperature and energy, and as the temperature becomes lower,  the solution changes randomly and the combination and the answer after randomization process is accepted even its energy becomes higher than its previous answer in order to avoid being stuck in the local minimum.
 
 Here is the pseudocode for the simulated annealing algorithm.
 

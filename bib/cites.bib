@@ -38,6 +38,20 @@
   publisher={SIAM}
 }
 
+@article{Lloyd,
+author = {Seth Lloyd },
+title = {Universal Quantum Simulators},
+journal = {Science},
+volume = {273},
+number = {5278},
+pages = {1073-1078},
+year = {1996},
+doi = {10.1126/science.273.5278.1073},
+URL = {https://www.science.org/doi/abs/10.1126/science.273.5278.1073},
+eprint = {https://www.science.org/doi/pdf/10.1126/science.273.5278.1073}
+}
+
+
 @article{superconducting,
    title={Life after charge noise: recent results with transmon qubits},
    volume={8},
@@ -81,7 +95,7 @@
   year = 2006
 }
 
-@article{2021,
+@article{rsa,
    title={How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits},
    volume={5},
    ISSN={2521-327X},
@@ -93,6 +107,61 @@
    year={2021},
    month={Apr},
    pages={433}
+}
+
+@article{grover,
+  title={Quantum telecomputation},
+  author={Grover, Lov K},
+  journal={arXiv preprint quant-ph/9704012},
+  year={1997}
+}
+
+@inproceedings{qubitallocation, 
+author = {Siraichi, Marcos Yukio and Santos, Vin\'{\i}cius Fernandes dos and Collange, Caroline and Pereira, Fernando Magno Quintao}, 
+title = {Qubit Allocation}, 
+year = {2018}, 
+isbn = {9781450356176}, 
+publisher = {Association for Computing Machinery}, 
+address = {New York, NY, USA}, url = {https://doi.org/10.1145/3168822}, 
+doi = {10.1145/3168822}, 
+booktitle = {Proceedings of the 2018 International Symposium on Code Generation and Optimization}, pages = {113–125}, 
+numpages = {13}, 
+keywords = {Qubit Allocation, CNOT, Quantum Computer}, 
+location = {Vienna, Austria}, 
+series = {CGO 2018} 
+}
+
+@inproceedings{noisy, 
+author = {Murali, Prakash and Baker, Jonathan M. and Javadi-Abhari, Ali and Chong, Frederic T. and Martonosi, Margaret}, 
+title = {Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers}, 
+year = {2019}, 
+isbn = {9781450362405}, 
+publisher = {Association for Computing Machinery}, 
+address = {New York, NY, USA}, 
+url = {https://doi.org/10.1145/3297858.3304075}, 
+doi = {10.1145/3297858.3304075}, 
+booktitle = {Proceedings of the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems}, 
+pages = {1015–1029}, 
+numpages = {15}, 
+keywords = {performance evaluation, quantum computing, noise-adaptive compilation, benchmarking, Qubit mapping, NISQ system}, 
+location = {Providence, RI, USA}, 
+series = {ASPLOS '19} 
+}
+
+@inproceedings{qmpi, 
+author = {H\"{a}ner, Thomas and Steiger, Damian S. and Hoefler, Torsten and Troyer, Matthias}, 
+title = {Distributed Quantum Computing with QMPI}, year = {2021}, 
+isbn = {9781450384421}, 
+publisher = {Association for Computing Machinery}, 
+address = {New York, NY, USA}, 
+url = {https://doi.org/10.1145/3458817.3476172}, 
+doi = {10.1145/3458817.3476172}, 
+booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage and Analysis}, 
+articleno = {16}, 
+numpages = {13}, 
+keywords = {QMPI, distributed quantum computing}, 
+location = {St. Louis, Missouri}, 
+series = {SC '21} 
 }
 
 @book{distributedcomputingtext,
@@ -111,7 +180,17 @@
   pages={46-86}
 }
 
-@article{1675884,
+@ARTICLE{definition,
+  author={Jiang, Yichuan and Zhou, Yifeng and Wang, Wanyuan},
+  journal={IEEE Transactions on Parallel and Distributed Systems}, 
+  title={Task Allocation for Undependable Multiagent Systems in Social Networks}, 
+  year={2013},
+  volume={24},
+  number={8},
+  pages={1671-1681},
+  doi={10.1109/TPDS.2012.249}}
+
+@article{time,
   author={Perng-Yi Richard Ma and Lee and Tsuchiya},
   journal={IEEE Transactions on Computers}, 
   title={A Task Allocation Model for Distributed Computing Systems}, 
@@ -122,7 +201,7 @@
   doi={10.1109/TC.1982.1675884}
   }
   
-  @article{ATTIYA20061259,
+  @article{reliability,
 author = {Gamal Attiya and Yskandar Hamam},
 title = {Task allocation for maximizing reliability of distributed systems: A simulated annealing approach},
 journal = {Journal of Parallel and Distributed Computing},
@@ -133,7 +212,7 @@ year = {2006},
 issn = {0743-7315}
 }
 
-@ARTICLE{8704,
+@ARTICLE{np,
   author={Lo, V.M.},
   journal={IEEE Transactions on Computers}, 
   title={Heuristic algorithms for task assignment in distributed systems}, 
@@ -142,31 +221,20 @@ issn = {0743-7315}
   number={11},
   pages={1384-1397},
   doi={10.1109/12.8704}}
-  
-@article{aspnes2020notes,
-  title={Notes on theory of distributed systems},
-  author={Aspnes, James},
-  journal={arXiv preprint arXiv:2001.04235},
-  year={2020}
-}
-  
-@ARTICLE {,
-author = {S. Shatz},
-journal = {Computer},
-title = {Communication Mechanisms for Programming Distributed Systems},
-year = {1984},
-volume = {17},
-number = {06},
-issn = {1558-0814},
-pages = {21-28},
-keywords = {null},
-doi = {10.1109/MC.1984.1659159},
-publisher = {IEEE Computer Society},
-address = {Los Alamitos, CA, USA},
-month = {jun}
+
+@inproceedings{algorithm,
+author = {Attiya, Gamal and Hamam, Yskandar},
+year = {2004},
+month = {05},
+pages = {97-106},
+title = {Task Allocation for Minimizing Programs Completion Time in Multicomputer Systems},
+volume = {3044},
+isbn = {978-3-540-22056-5},
+journal = {Lecture Notes in Computer Science (LNCS)},
+doi = {10.1007/978-3-540-24709-8_11}
 }
 
-@article{10.1145/1412700.1412718, 
+@article{distributedquantumcomputing, 
 author = {Denchev, Vasil S. and Pandurangan, Gopal}, 
 title = {Distributed Quantum Computing: A New Frontier in Distributed Systems or Science Fiction?}, year = {2008},
  issue_date = {September 2008}, 
@@ -183,22 +251,48 @@ pages = {77–95},
 numpages = {19}
  }
  
-@inproceedings{10.1145/3168822, 
-author = {Siraichi, Marcos Yukio and Santos, Vin\'{\i}cius Fernandes dos and Collange, Caroline and Pereira, Fernando Magno Quintao}, 
-title = {Qubit Allocation}, 
-year = {2018}, 
-isbn = {9781450356176}, 
-publisher = {Association for Computing Machinery}, 
-address = {New York, NY, USA}, 
-url = {https://doi.org/10.1145/3168822}, 
-doi = {10.1145/3168822}, 
- booktitle = {Proceedings of the 2018 International Symposium on Code Generation and Optimization}, pages = {113–125}, 
- numpages = {13}, 
- keywords = {Qubit Allocation, CNOT, Quantum Computer}, 
- location = {Vienna, Austria}, series = {CGO 2018} 
- }
+@inproceedings{distributedshor,
+  title={Distributed quantum computing: A distributed Shor algorithm},
+  author={Yimsiriwattana, Anocha and Lomonaco Jr, Samuel J},
+  booktitle={Quantum Information and Computation II},
+  volume={5436},
+  pages={360--372},
+  year={2004},
+  organization={International Society for Optics and Photonics}
+}
+
+@article{distributedgrover,
+author = {Exman, Iaakov and Levy, Efrat},
+year = {2012},
+month = {08},
+pages = {},
+title = {Quantum Probes Reduce Measurements: Application to Distributed Grover Algorithm},
+volume = {arXiv:1208.3905}
+}
+
+@article{gateteleportation,
+  title={Optimal local implementation of nonlocal quantum gates},
+  author={Eisert, Jens and Jacobs, Kurt and Papadopoulos, Polykarpos and Plenio, Martin B},
+  journal={Physical Review A},
+  volume={62},
+  number={5},
+  pages={052317},
+  year={2000},
+  publisher={APS}
+}
+
+@article{arithmetic,
+  title={Arithmetic on a distributed-memory quantum multicomputer},
+  author={Meter, Rodney Van and Munro, WJ and Nemoto, Kae and Itoh, Kohei M},
+  journal={ACM Journal on Emerging Technologies in Computing Systems (JETC)},
+  volume={3},
+  number={4},
+  pages={1--23},
+  year={2008},
+  publisher={ACM New York, NY, USA}
+}
  
- @article{PhysRevLett.70.1895,
+ @article{teleportation,
   title = {Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels},
   author = {Bennett, Charles H. and Brassard, Gilles and Cr\'epeau, Claude and Jozsa, Richard and Peres, Asher and Wootters, William K.},
   journal = {Phys. Rev. Lett.},
@@ -211,4 +305,114 @@ doi = {10.1145/3168822},
   publisher = {American Physical Society},
   doi = {10.1103/PhysRevLett.70.1895},
   url = {https://link.aps.org/doi/10.1103/PhysRevLett.70.1895}
+}
+
+@article{distributedquantumcompiler,
+  title={Compiler Design for Distributed Quantum Computing},
+  author={Ferrari, Davide and Cacciapuoti, Angela Sara and Amoretti, Michele and Caleffi, Marcello},
+  journal={arXiv preprint arXiv:2012.09680},
+  year={2020}
+}
+
+@article{exhaustivesearch,
+  title={Optimizing teleportation cost in distributed quantum circuits},
+  author={Zomorodi-Moghadam, Mariam and Houshmand, Mahboobeh and Houshmand, Monireh},
+  journal={International Journal of Theoretical Physics},
+  volume={57},
+  number={3},
+  pages={848--861},
+  year={2018},
+  publisher={Springer}
+}
+
+@article{hypergraph,
+  title={Automated distribution of quantum circuits via hypergraph partitioning},
+  author={Andres-Martinez, Pablo and Heunen, Chris},
+  journal={Physical Review A},
+  volume={100},
+  number={3},
+  pages={032308},
+  year={2019},
+  publisher={APS}
+}
+
+@article{genetic,
+author = {Houshmand, Mahboobeh and Mohammadi, Zahra and Zomorodi, Mariam and Houshmand, Monireh},
+year = {2020},
+month = {04},
+pages = {},
+title = {An Evolutionary Approach to Optimizing Teleportation Cost in Distributed Quantum Computation},
+volume = {59},
+journal = {International Journal of Theoretical Physics},
+doi = {10.1007/s10773-020-04409-0}
+}
+
+@article{dynamic,
+  title={A dynamic programming approach for distributing quantum circuits by bipartite graphs},
+  author={Davarzani, Zohreh and Zomorodi-Moghadam, Mariam and Houshmand, Mahboobeh and Nouri-baygi, Mostafa},
+  journal={Quantum Information Processing},
+  volume={19},
+  number={10},
+  pages={1--18},
+  year={2020},
+  publisher={Springer}
+}
+
+@article{Kernighahn-Lin,
+  title={Optimized Quantum Circuit Partitioning},
+  author={Daei, Omid and Navi, Keivan and Zomorodi-Moghadam, Mariam},
+  journal={International Journal of Theoretical Physics},
+  volume={59},
+  number={12},
+  pages={3804--3820},
+  year={2020},
+  publisher={Springer}
+}
+
+@article{WQCP,
+author = {Nikahd, Eesa and Mohammadzadeh, Naser and Sedighi, Mehdi and Saheb Zamani, Morteza},
+year = {2020},
+month = {12},
+pages = {},
+title = {Automated window-based partitioning of quantum circuits},
+volume = {96},
+journal = {Physica Scripta},
+doi = {10.1088/1402-4896/abd57c}
+}
+
+@article{matrix,
+  title={Connectivity matrix model of quantum circuits and its application to distributed quantum circuit optimization},
+  author={Ismail Ghodsollahee and Zohreh Davarzani and Mariam Zomorodi and PawfB QBawiak and Monireh Houshmand and Mahboobeh Houshmand},
+  journal={Quantum Inf. Process.},
+  year={2021},
+  volume={20},
+  pages={1-21}
+}
+
+@article{simulatedannealing,
+author = {S. Kirkpatrick  and C. D. Gelatt  and M. P. Vecchi },
+title = {Optimization by Simulated Annealing},
+journal = {Science},
+volume = {220},
+number = {4598},
+pages = {671-680},
+year = {1983},
+doi = {10.1126/science.220.4598.671},
+URL = {https://www.science.org/doi/abs/10.1126/science.220.4598.671},
+eprint = {https://www.science.org/doi/pdf/10.1126/science.220.4598.671}
+}
+
+@inproceedings{Boltzmann,
+  title={Simulated annealing and Boltzmann machines - a stochastic approach to combinatorial optimization and neural computing},
+  author={Emile H. L. Aarts and Jan H. M. Korst},
+  booktitle={Wiley-Interscience series in discrete mathematics and optimization},
+  year={1990}
+}
+
+@software{heqsim,
+author = {Nakai, Makoto},
+month = {4},
+title = {{heqsim: Heterogeneous Quantum Computing Simulator}},
+version = {0.0.1},
+year = {2022}
 }

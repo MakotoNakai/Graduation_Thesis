@@ -4,32 +4,32 @@
 \section{Performance of  An Interprocessor CNOT Gate}
 Both the execution time and required amount of resource for inter-node communication are important because it significantly affects the total execution time and the whole architecture of a distributed quantum computing system. 
 
- The work [19] proved that one bit of classical communication in each direction and one bell pair are sufficient for the non-local CNOT gate.  It also proposes the optimal implementation of a non-local CNOT in terms of communication overhead and the number of required quantum gates. 
+ The work \cite{gateteleportation} proved that one bit of classical communication in each direction and one bell pair are sufficient for the non-local CNOT gate.  It also proposes the optimal implementation of a non-local CNOT in terms of communication overhead and the number of required quantum gates. 
  
- The work [20] compared the performance between "telegate" and "teledata" approach in terms of various number of data qubits, communication qubits, and its network topology.  It presents the fact that the teledata approach is faster than the telegate approach, and that decomposition of a quantum gate will improve the performance.  It also shows that each node should have a few logical qubits and two communication qubits.
+ The work \cite{arithmetic} compared the performance between "telegate" and "teledata" approach in terms of various number of data qubits, communication qubits, and its network topology.  It presents the fact that the teledata approach is faster than the telegate approach, and that decomposition of a quantum gate will improve the performance.  It also shows that each node should have a few logical qubits and two communication qubits.
 
 \section{Minimization of the Number of Interprocessor Communication}
 
 Dividing the given quantum circuit into several fragments one of the main jobs for a distributed quantum compiler.  In the process of partitioning the given quantum circuit, the distributed quantum compiler has to minimize the number of inter-processor communication in order to reduce the delay in the entire circuit execution.  
 
-The work [21] proposed an exhaustive-search-based algorithm to find a partition of the given quantum circuit with the minimum number of quantum teleportation between two quantum processors.
+The work \cite{exhaustivesearch} proposed an exhaustive-search-based algorithm to find a partition of the given quantum circuit with the minimum number of quantum teleportation between two quantum processors.
 
-The work [22] applied the heuristic algorithm for a hypergraph partitioning problem in order to minimize the number of inter-processor communication, which can be applied to more than two quantum processors.
+The work \cite{hypergraph} applied the heuristic algorithm for a hypergraph partitioning problem in order to minimize the number of inter-processor communication, which can be applied to more than two quantum processors.
 
-The work [23] tackled the minimization of interprocessor communication by using the genetic algorithm and demonstrated its advantage over random search over the search space.
+The work \cite{genetic} tackled the minimization of interprocessor communication by using the genetic algorithm and demonstrated its advantage over random search over the search space.
 
-The work [24] converted the given quantum circuit into a bi-partite graph and the gates and qubits are assigned to each part of the graph.  Then, the graph was partitioned into $K$ parts which minimizes the number of non-local CNOTs.
+The work \cite{dynamic} converted the given quantum circuit into a bi-partite graph and the gates and qubits are assigned to each part of the graph.  Then, the graph was partitioned into $K$ parts which minimizes the number of non-local CNOTs.
 
-The work [25] used the Kernigrahn-Lin algorithm, which is one of the heuristic algorithms for the graph partitioning problem, to find arbitrary number of partition with the smallest number of interprocessor communication.
+The work \cite{Kernighahn-Lin} used the Kernighahn-Lin algorithm, which is one of the heuristic algorithms for the graph partitioning problem, to find arbitrary number of partition with the smallest number of interprocessor communication.
 
-The work [26] proposed a new scheme for reducing interprocessor communication called window-based quantum circuit partitoning, or WQCP in short.  This approach combined reduction of both telegate and teledata opportunities. 
+The work \cite{WQCP} proposed a new scheme for reducing interprocessor communication called window-based quantum circuit partitoning, or WQCP in short.  This approach combined reduction of both telegate and teledata opportunities. 
 
-The work [26] suggested another algorithm for minimizing the interprocessor communication which consists of two phases by using the connectivity-matrix-based representation of a quantum circuit.
+The work \cite{matrix} suggested another algorithm for minimizing the interprocessor communication which consists of two phases by using the connectivity-matrix-based representation of a quantum circuit.
 In the first phase, it proposed two objective functions to minimize the number of non-local CNOTs and difference between the number of qubits in two partitioning.  In the second phase, two heuristics were also proposed two other heuristics to minimize the number of quantum teleportation required.
 
-\section{Distributed Quantum Compiler}
+\section{Quantum Compiler For Distributed Quantum Computing}
 
-The work [27] discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
+The work \cite{distributedquantumcompiler} discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
 
  This study also derived the analytical upper bound of the circuit depth both for the entanglement-based non-local operation and the data-qubit-swapping-based non-local operation.
  
@@ -45,7 +45,7 @@ The work [27] discussed the design of a general-purpose, efficient, and effectiv
   $n$ is the number of qubits, $c_{le}$ is the number of layers required to perform the link entanglement, $c_{bms}$ is that to perform entanglement swapping, $c_{cx}$ is that to perform remote CNOTs.
   This study mentions that parameters $c_{le}$, $c_{bms}$, $c_{cx}$ heavily depends on the underlying hardware architecture.
   
-  It also compare the performance of both strategies with the previous work [22].  It experimentally demonstrated that the entanglement-swapping-based strategy requires less number of layers for link generation, and the data-qubit-swapping-based strategy requires less circuit depth, on the worst network topology (the linear topology with one qubit on an each processor).
+  It also compare the performance of both strategies with the previous work \cite{hypergraph}.  It experimentally demonstrated that the entanglement-swapping-based strategy requires less number of layers for link generation, and the data-qubit-swapping-based strategy requires less circuit depth, on the worst network topology (the linear topology with one qubit on an each processor).
 
 
 %%% Local Variables:

@@ -30,15 +30,31 @@ $$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathb
 	Because $e^{i\gamma}$ is just a global state, it can be ignored and the same state can be rewritten like this.
 	$$ |\psi\rangle =  \cos{\frac{\theta}{2}} + e^{i\phi} \sin{\frac{\theta}{2}} (\phi, \theta \in \mathbb{C})$$ 
 	Because the equation above has two parameters,  any pure single qubit state can be considered as a point on the surface and its geometric representation is called \textbf{Bloch sphere}.
-	\begin{figure}[h]
-		\begin{center}
-		\includegraphics[width=10cm]{img/blochsphere.png}
-		\end{center}
-		\caption{Bloch sphere}
-	\end{figure}
+	
+\begin{figure}[ht]
+\centering
+\tikz{
+  \tikzstyle{st}=[lightgray, fill, fill opacity=0.2];
+  \coordinate(o)at(0,0);
+  \draw(o)circle(2cm);
+  \draw[fill](o)circle(1.5pt);%origin
+  \draw[st](o)--(56.7:0.4)arc(56.7:90.:0.4)--cycle;%theta angle
+  \draw(0.18,0.6)node{$\theta$};
+  \draw[st](o)--(-135.7:0.4)arc(-135.7:-33.2:0.4)--cycle;%varphi angle
+  \draw(0.14,-0.58)node{$\varphi$};
+  \draw[->](o)--(-0.81,-0.79) node[above left]{\ $x$};%x
+  \draw[->](o)--(2,0)node[right]{$y$};%y
+  \draw[->](o)--(0,2)node[below right]{$z$}node[above]{\ $\ket{0}$};%z |0>
+  \draw[rotate around={0.:(0.,0.)},dashed](0,0)ellipse(2cm and 0.9cm);%ellipse
+  \draw[thick,->](o)--(0.70,1.07)node[above]{\ $\ket{\psi}$};%state vector
+  \draw[densely dotted,->](o)--(0,-2)node[below]{\ $\ket{1}$};%-z |1>
+  \draw[dotted](o)--(0.7,-0.46)--(0.7,1);%triangle
+  }
+ \caption{Bloch Sphere}
+ \end{figure}
 	
  \subsection{Multi-Qubit State}
-  The quantum state for multi-qubits is a \textbf{tensor product}of a state vector of each qubit.  The general notation of two qubit state is
+  The quantum state for multi-qubits is a \textbf{tensor product} of a state vector of each qubit.  The general notation of two qubit state is
    $$ |\psi\rangle = (\alpha |0\rangle + \beta |1\rangle) \otimes  (\gamma |0\rangle + \delta |1\rangle) $$
    $$ = \alpha \gamma |00\rangle + \alpha \delta |01\rangle + \beta \gamma |10\rangle + \beta \delta |11\rangle $$
   $$(\alpha, \beta, \gamma, \delta \in \mathbb{C}, |\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1)$$
@@ -68,10 +84,6 @@ $$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathb
 
  However, some quantum states such as
  $$ |\psi\rangle = \frac{1}{\sqrt{2}}|00\rangle + \frac{1}{\sqrt{2}}|11\rangle$$ cannot be decomposed into quantum state of each qubit.  These special quantum states are called \textbf{entangled} states.
- 
- 
-
-\newpage
 
 \subsection{Quantum Gates}
 
@@ -559,12 +571,14 @@ $$ |\Phi^-\rangle = \frac{|00\rangle - |11\rangle}{\sqrt{2}}$$
 $$ |\Psi^+\rangle = \frac{|01\rangle + |10\rangle}{\sqrt{2}}$$
 $$ |\Psi^-\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}$$
 
+\newpage
+
 \section{Distributed Computing}
 
- Distributed computing is the study of distributed system, which is a collection of several processors that are connected via network in order to solve a problem whose scale is much larger than what an individual processor can handle.  This type of computation involves message-passing between two physically separated processors to communicate and cooperate with each other by using pure HTTP, RPC, or message queues. [7] 
+ Distributed computing is the study of distributed system, which is a collection of several processors that are connected via network in order to solve a problem whose scale is much larger than what an individual processor can handle.  This type of computation involves message-passing between two physically separated processors to communicate and cooperate with each other by using pure HTTP, RPC, or message queues. \cite{distributedcomputingtext} 
  
  \subsection{Characteristics of Distributed System}
- \par Distributed system has the following characteristics [8], which are,
+ \par Distributed system has the following characteristics, which are,
  
  \begin{itemize}
  
@@ -589,7 +603,7 @@ $$ |\Psi^-\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}$$
 
 \subsection{Advantages Over Computation by a Single Processor}
 
-Performing computation in a distributed manner provides the following advantages. [8]
+Performing computation in a distributed manner provides the following advantages.
 
 \begin{itemize}
  
@@ -634,20 +648,20 @@ Performing computation in a distributed manner provides the following advantages
 
 \subsection{Task Allocation Problem}
 
-Here are some definitions of the task allocation problem in distributed system.[9]
+Here are some definitions of the task allocation problem in distributed system. \cite{definition}
 Given a distributed system $G = <V, E>$, where V is the set of nodes and E is the set of communication link between two different nodes, i.e. $\forall v_i. v_j \in V, \exists <v_i, v_j> \in E$.  The set of the resources in $a_i$ is $R_{a_i}$ and that required by the task $t$ is $R_t$.
 
 \begin{enumerate}
 	\item{$R_t \subseteq$ $\bigcup_{\forall a_i \in A_t} R_{a_i}$}
-	\item{The objective should be either minimizing the execution time [10] or maximizing reliability [11]}
+	\item{The objective should be either minimizing the execution time \cite{time} or maximizing reliability \cite{reliability}}
 	\item{The nodes in $A_t$ can execute the allocated task under the constraint of the network structure $\forall a_i, a_j \in A_t \Rightarrow P_{ij} \subseteq E$ where $P_{ij}$ denotes the path between $a_i$ and $a_j$}
 \end{enumerate}
 
-Task allocation is known to be a NP-problem. [12]
+Task allocation is known to be a NP-problem. \cite{np}
 
 \subsection{Distributed Task Allocation Algorithms}
 
-Due to the fact that task allocation problem is classified as NP-hard, many works have proposed heuristic functions for distributed task allocations in various settings.  Here, the author is going to introduce a simple objective function presented in the paper [13], which is this work is based on.
+Due to the fact that task allocation problem is classified as NP-hard, many works have proposed heuristic functions for distributed task allocations in various settings.  Here, the author is going to introduce a simple objective function presented in the paper \cite{algorithm}, which is this work is based on.
 
 It is assumed that a multicomputer system consists of $N$ heterogeneous processors with some amount of computational power and the size of memory.  Also, the given program includes $M$ communicating tasks, which is the nodes in the task interaction graph $G(V, E)$ ($V$ is $M$ communicating tasks and E is a set of communication relationship between two tasks).
 
@@ -667,90 +681,196 @@ The objective of this task allocation is to minimize the total execution time. I
  
  Therefore, the object function is $$min \,\,COST$$
 
-
 \subsection{Models of Process Communication}
 
-There are two basic models of process communication.[13] One is \textit{synchronous} communication, which the sender process blocks its execution until it receives "acknowledgement " (or "ack" in short) from the receiver, which indicates that the receiver accepted the delivered message. In other words, the sender and receiver synchronize with each other, in order to adjust their timings to cooperate.
+There are two basic models of process communication. One is \textit{synchronous} communication, which the sender process blocks its execution until it receives "acknowledgement " (or "ack" in short) from the receiver, which indicates that the receiver accepted the delivered message. In other words, the sender and receiver synchronize with each other, in order to adjust their timings to cooperate.
 \par On the other hand, the other model, which is \textit{asynchronous} execution does not require synchronization between the sender and the receiver.  Therefore, the sender executes its following task right after it delivers its message to the receiver. 
+
+\newpage
 
 \section{Distributed Quantum Computing}
  
-  Performing quantum computation on a cluster of middle-sized quantum processors is an easier approach compared to build a large single processor due to its lower physical requirement to build each processor [13].  \\
+  Performing quantum computation on a cluster of middle-sized quantum processors is an easier approach compared to build a large single processor due to its lower physical requirement to build each processor \cite{distributedquantumcomputing}.  \\
 This chapter explains several components that consists of distributed quantum computing system.
 
 \subsection{Distributed Quantum Algorithms}
 
-Distributed version of Shor's algorithm[14] and Grover's algorithm[15], both of which takes remote CNOTs (which will be discussed in a  later subsection) were presented in 2004 and 2012, respectively. 
+Distributed version of Shor's algorithm \cite{distributedshor} and Grover's algorithm \cite{distributedgrover}, both of which takes remote CNOTs (which will be discussed in a  later subsection) were presented in 2004 and 2012, respectively. 
 However, the quantum circuits shown in these studies are physical ones, in other words, something that will be implemented directly on physical hardware, not something that users will implement in their programs. 
 
 \subsection{Distributed Quantum Compiler}
 
- Quantum compiler is a software to optimize a quantum circuit defined in the given program to reduce the number of quantum gates and alleviate the effect of physical noise on that quantum state, and map that to the real hardware so that it will satisfy the connectivity constraint on that hardware [16].  Just like the case of a local quantum software, distributed quantum computer also needs its distributed version, which is called "distributed quantum compiler" in order to convert some CNOT gates into remote CNOTs and optimize both its execution time and the number of quantum gates in total, especially that of non-local operations.  This work focuses on the methodology to optimize the total execution time over the distributed quantum computing setting.
+ Quantum compiler is a software to optimize a quantum circuit defined in the given program to reduce the number of quantum gates and alleviate the effect of physical noise on that quantum state, and map that to the real hardware so that it will satisfy the connectivity constraint on that hardware \cite{qubitallocation}.  Just like the case of a local quantum software, distributed quantum computer also needs its distributed version, which is called "distributed quantum compiler" in order to convert some CNOT gates into remote CNOTs and optimize both its execution time and the number of quantum gates in total, especially that of non-local operations.  This work focuses on the methodology to optimize the total execution time over the distributed quantum computing setting.
  
  \subsection{Gate-Teleportation-Based Non-Local CNOT}
  
 Non-local operations are controlled operations between two qubits on two different processors there are three main approach to achieve them.
 
-The first operation is the gate teleporation approach, and is also called non-local quantum gates [17] and telegate [18].  Here is the quantum circuit that achieve this operation.
+The first operation is the gate teleporation approach, and is also called non-local quantum gates \cite{gateteleportation} and telegate \cite{arithmetic}.  Here is the quantum circuit that achieve this operation.
 
 Suppose that a person would like to apply a non-local CNOT between $|a_0\rangle$ on one processor and $|b_0\rangle$ on the other processor.  In order to do this, he has to prepare a new bell pair between these two processors.  ($|p_i\rangle$ in the following circuit diagram comes from p in $|\psi (psi)^+\rangle$)
 
- \begin{figure}[h]
-  		\begin{center}
-  			\includegraphics[width=10cm]{img/non-local-cnot.png}
-			\caption{Quantum circuit for a non-local CNOT gate}
-			\label{Fig1}
-		\end{center}
-	\end{figure}
-	
-\newpage
+ \begin{figure}[ht]
+  	\begin{center}
+  		\begin{tikzpicture}
+   			\begin{yquant}
+      				qubit {$\ket{\reg_{\idx}}$} a[1];
+     				 qubit {$\ket{\reg_{\idx}}$} p[2];
+     				 qubit {$\ket{\reg_{\idx}}$} b[1];
+      				h p[0];
+      				cnot p[1] | p[0];
+      				cnot p[0] | a[0];
+      				measure p[0];
+      				x p[1] | p[0];
+      				cnot b[0] | p[1];
+      				h p[1];
+      				measure p[1];
+     				z a[0] | p[1];
+   			\end{yquant}
+		\end{tikzpicture}
+		\caption{Quantum circuit for a non-local CNOT gate}
+	\end{center}
+\end{figure}
 
 \subsection{Quantum Teleportation}
 
-  Unlike classical communication, quantum states cannot be just copied and transmit to other nodes due to the no-cloning theorem, which forbids duplication of any quantum state.  However, a method called quantum teleportation[19] was proposed, which overcomes the restriction and allows sender to transmit single qubit state to a distant location. 
+  Unlike classical communication, quantum states cannot be just copied and transmit to other nodes due to the no-cloning theorem, which forbids duplication of any quantum state.  However, a method called quantum teleportation \cite{teleportation} was proposed, which overcomes the restriction and allows sender to transmit single qubit state to a distant location. 
  		
 This method requires both the single qubit state and a new Bell pair, and also the sender have to prepare two qubits and the receiver have to prepare one qubit.  After applying a CNOT gate and an H gate in the figure above, the sender have to measure both qubits and send those measurement results over the classical network.  After the receiver get those measurement results and apply some quantum gates if the measurement results of corresponding qubits on the sender's side are 1, in order to correct on the quantum state on the receiver's side.
 
-	\begin{figure}[h]
-  		\begin{center}
-  			\includegraphics[width=10cm]{img/teleportation.png}
-			\caption{Quantum circuit for quantum teleportation}
-			\label{Fig2}
-		\end{center}
-	\end{figure}
-\newpage
+\begin{figure}[ht]
+  	\begin{center}
+  		\begin{tikzpicture}
+			\begin{yquant}
+	 			qubit {$\ket{\reg_{\idx}}$} a[2];
+	 			qubit {$\ket{\reg_{\idx}}$} b[1];	 
+	 			h a[1];
+	 			cnot b[0] | a[1];
+	 			cnot a[1] | a[0];
+	 			h a[0];
+	 			measure a[0];
+	 			z b[0] | a[0];
+	 			measure a[1];
+	 			x b[0] | a[1]; 	 
+ 			\end{yquant}
+		\end{tikzpicture}
+	\caption{Quantum circuit for quantum teleportation}
+	\end{center}
+\end{figure}
+
 \subsection{Quantum-Teleportation-Based Non-Local CNOT}
 
  The second approach for performing a non-local CNOT gate is based on quantum teleportation mentioned in the previous section.  This approach assumes that every quantum processor has something called "communication qubits", which is a qubit that serves for communication purpose, unlike those used for computation purpose, which are called "data qubits".
  
- \begin{figure}[h]
-  		\begin{center}
-  			\includegraphics[width=10cm]{img/teleportation-cnot.png}
-			\caption{The full quantum circuit for a teledata non-local controlled-U gate}
-			\label{Fig3}
-		\end{center}
-	\end{figure}
+ \begin{figure}[ht]
+  	\begin{center}
+  		\begin{tikzpicture}
+			 \begin{yquant}
+			 qubit {$\ket{\reg}$} control[1];
+	 		 qubit {$\ket{\reg}$} comm1[1];
+	 		 qubit {$\ket{\reg}$} comm2[1];
+	 		 qubit {$\ket{\reg}$} control'[1];
+	 		 qubit {$\ket{\reg}$} target[1]; 
+	 
+			 h comm1[0];
+			 cnot comm2[0] | comm1[0];
+	 		cnot comm1[0] | control[0];
+	 		h control[0];
+	 		measure control[0];
+	 		z comm2[0] | control[0];
+	 		discard control;
+	 		init {$\ket{0}$} control;
+	 		measure comm1[0];
+	 		x comm2[0] | comm1[0];
+	 		discard comm1;
+			 init {$\ket{0}$} comm1;
+			cnot control'[0] | comm2[0];
+	 		cnot comm2[0] | control'[0];
+			cnot control'[0] | comm2[0];
+			box {$U$} target[0] | control'[0];
+	 
+ 			\end{yquant}
+			\end{tikzpicture}
+			\vskip\baselineskip
+			\begin{tikzpicture}
+ 			\begin{yquant}
+			qubit {$\ket{\reg}$} control[1];
+	 		qubit {$\ket{\reg}$} comm1[1];
+	 		qubit {$\ket{\reg}$} comm2[1];
+	 		qubit {$\ket{\reg}$} control'[1];
+	 		qubit {$\ket{\reg}$} target[1]; 
+	 
+	 		cnot comm2[0] | control'[0];
+	 		cnot control'[0] | comm2[0];
+	 		cnot comm2[0] | control'[0];
+	 
+	 		h comm2[0];
+	 		cnot comm1[0] | comm2[0];
+	 		cnot comm2[0] | control'[0];
+	 		h control'[0];
+	 		measure control'[0];
+	 		z comm1[0] | control'[0];
+	 		discard control';
+	 		init {$\ket{0}$} control';
+	 		measure comm2[0];
+	 		x comm1[0] | comm2[0];
+	 		discard comm2;
+	 		init {$\ket{0}$} comm2;
+	 
+	 		cnot control[0] | comm1[0];
+			cnot comm1[0] | control[0];
+			cnot control[0] | comm1[0];
+	 
+ 			\end{yquant}
+		\end{tikzpicture}
+
+		\caption{The full quantum circuit for a teledata non-local controlled-U gate}
+	\end{center}
+\end{figure}
 	
+\newpage
+
 \subsection{Data-Qubit-Swapping-Based Non-Local-CNOT}
 
-The last approach for the non-local CNOT gate aims to sort qubits in the quantum processors so that each CNOT gates would be executed on the neighboring processors. (the paper [20] assumes linear topology)
+The last approach for the non-local CNOT gate aims to sort qubits in the quantum processors so that each CNOT gates would be executed on the neighboring processors. (the paper \cite{distributedquantumcompiler} assumes linear topology)
 
-\begin{figure}[h]
-  		\begin{center}
-  			\includegraphics[width=10cm]{img/data-swapping-before.png}
-			\caption{The quantum circuit before the data qubit swapping occurs}
-			\label{Fig3}
-		\end{center}
-	\end{figure}
+\begin{figure}[ht]
+  	\begin{center}
+  		\begin{tikzpicture}
+ 			\begin{yquant}
+ 
+			qubit {$\ket{\reg}$} Q_0[1];
+			qubit {$\ket{\reg}$} Q_1[1];
+			qubit {$\ket{\reg}$} Q_2[1];
+			qubit {$\ket{\reg}$} Q_3[1];
+
+			cnot Q_3[0] | Q_0[0];
+			cnot Q_2[0] | Q_1[0];
+			\end{yquant}
+		\end{tikzpicture}
+
+		\caption{The quantum circuit before the data qubit swapping occurs}
+	\end{center}
+\end{figure}
 	
-\begin{figure}[h]
-  		\begin{center}
-  			\includegraphics[width=10cm]{img/data-swapping-after.png}
-			\caption{The quantum circuit after the data qubit swapping occurs}
-			\label{Fig3}
-		\end{center}
-	\end{figure}
-\newpage
+\begin{figure}[ht]
+  	\begin{center}
+  		\begin{tikzpicture}
+			\begin{yquant}
+ 
+			qubit {$\ket{\reg}$} Q_0[1];
+			qubit {$\ket{\reg}$} Q_3[1];
+			qubit {$\ket{\reg}$} Q_1[1];
+			qubit {$\ket{\reg}$} Q_2[1];
+
+			cnot Q_3[0] | Q_0[0];
+			cnot Q_2[0] | Q_1[0];
+
+ 			 \end{yquant}
+		\end{tikzpicture}
+		\caption{The quantum circuit after the data qubit swapping occurs}
+	\end{center}
+\end{figure}
 
 \begin{algorithm}
  \caption{Algorithm for Data-Qubit Swapping}
@@ -780,18 +900,17 @@ The last approach for the non-local CNOT gate aims to sort qubits in the quantum
  \end{algorithmic} 
  \end{algorithm}
 
-
+\newpage
 
  \subsection{Quantum Processor}
   A quantum processor, which corresponds to individual processor in a classical distributed system, has several qubits and links between two qubits in a limited topology.
   
-  	 \begin{figure}[h]
-  		\begin{center}
-  			\includegraphics[width=5cm]{img/processor.png}
-			\caption{An example of the layout of a quantum processor}
-			\label{Fig4}
-		\end{center}
-	\end{figure}
+  \begin{figure}[ht]
+  	\begin{center}
+  		\includegraphics[width=5cm]{img/processor.png}
+		\caption{An example of the layout of a quantum processor}
+	\end{center}
+\end{figure}
 	
 Usually, qubits in a current quantum processor are connected with a few neighboring qubits due to its physical restriction on a hardware.  Also, the error rate of a CNOT gate is much higher than that of a single quantum gate.
  
