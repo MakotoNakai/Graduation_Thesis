@@ -572,6 +572,93 @@ $$ |\Psi^+\rangle = \frac{|01\rangle + |10\rangle}{\sqrt{2}}$$
 $$ |\Psi^-\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}$$
 
 \newpage
+\subsection{Quantum compiler}
+
+ Qubit compiler is a software that finds (near-) optimal mapping between the qubits in the program onto physical qubits on a quantum processor, which are constrained by their limited connectivity.  Also, its solution has to reduce the number of gates applied on those qubits, which ends up with less physical noise on the actual quantum state. In this chapter, the author will explain the algorithm to find the (near-) optimal qubit allocation presented in \cite{quantummapping}.
+ 
+ Here is the procedure of quantum compilation.   
+  \begin{figure}[ht]
+  	\begin{center}
+  		\begin{tikzpicture}
+			 \begin{yquant}
+			 
+			 qubit {$\ket0$} q[6];
+	 		cnot q[0] | q[1];
+			cnot q[3] | q[2];
+			barrier (q);
+			
+			cnot q[4] | q[1];
+			cnot q[3] | q[5];
+			barrier (q);
+			
+			cnot q[3] | q[2];
+			 	 
+ 			\end{yquant}
+		\end{tikzpicture}
+
+		\caption{An example of quantum circuit to be compiled}
+	\end{center}
+\end{figure}
+
+  \begin{figure}[ht]
+  	\begin{center}
+  		\includegraphics[width=5cm]{img/quantum-processor.png}
+		\caption{The connectivity constraints of qubits on a quantum processor}
+	\end{center}
+\end{figure}
+	
+ 
+\subsubsection{Circuit Partitioning into Layers}
+
+ First of all, the given quantum circuit is partitioned into several layers and a layer $l_i$ and all the quantum gates in a single layer $l_i$ do not share any qubits. Also, the number of the depth of a circuit is same as that of layers in the same circuit.
+ 
+ After that, the qubit mapping is proposed in each layer $l_i$ and it does not have to correspond with that of the previous layer  $l_{i-1}$. Instead, a new layer of SWAP gates $\pi_i$ is inserted before the quantum compiler goes onto the next layer. In other words, the sequence of layers will be denoted as $l_0 \pi_1 l_1\pi_2 l_2 \dots$.
+ 
+\subsubsection{Determining the Qubit Mapping}
+
+The quantum compiler determines the mapping relationship between program qubits onto physical qubits on an actual quantum processor for each layer $l_i$, which is denoted as $\sigma^i_j: \{q_0, q_1, q_2, \dots q_{n-1}\} \rightarrow \{Q_0, Q_1, Q_2, \dots Q_{m-1}\}$. ($j$ is a unique id for that relationship, $n$ is the number of qubits on the given program, and $m$ is the number of physical qubits on a quantum processor) This relationship has to satisfy the CNOT-constraints on that hardware and the initial mapping is same of that of the previous layer, in other words, $\sigma^{i-1} = \sigma^i_0$.  The goal of this step is to find $\sigma^{i}$, which is the (sub-)optimal mapping relationship by adding minimum number of new operations by using an algorithm $A^{*}$ search.
+
+\subsubsection{A* Search}
+$A^{*}$ search is a state-space-based search algorithm that can be applied to states whose relationships have a tree structure.  The cost of the next node from the root to the node $x$ is $f(x)$, and $g(x)$ is the cost of the path from the root to the current state, and $h(x)$ is the additional cost of the link between the current state and the next state.　
+
+Therefore, $$f(x) = g(x) + h(x)$$
+
+In the case of quantum compilation, the cost of the root state, which is the initial qubit mapping is 0. If the cost for the current state is $f(x)$, $g(x)$ is that of the previous mapping, and the $h(x)$ is the cost for additional layers.
+
+If the current mapping $\sigma^i_j$ is followed by the next mapping  $\sigma^i_h$, the cost of the current mapping would be
+$$ f(\sigma^i_j) = f(\sigma^i_j) + 7 \times \textrm{(number of SWAP gates)} $$
+The equation above contains 7, because a single SWAP gate requires 7 elementary gates.
+
+\begin{figure}[ht]
+	\begin{center}
+		\begin{tikzpicture}
+			 \begin{yquant}
+			qubit {$\ket0$} q[2];
+	 		cnot q[1] | q[0];
+			h q[0];
+			h q[1];
+			cnot q[1] | q[0];
+			h q[0];
+			h q[1];
+			cnot q[1] | q[0];
+			\end{yquant}
+		\end{tikzpicture}
+		\caption{7 elementary gates to implement a SWAP gate}
+	\end{center}
+\end{figure}
+
+If you assign physical qubits $Q_c$ as a control qubit and $Q_t$ as a target qubit for a CNOT gate $g \in l_i$.  If the shortest directed path between $Q_c$ and $Q_t$ is denoted as $\hat{p}$, the additional gate cost for the CNOT gate $g$ in the current mapping $\sigma^i_j$ would be $$h(g, \sigma^i_j) = 7 \times (\hat{p} - 1)$$.
+
+Therefore, the gate cost of additional layer $l$, which is $h(\sigma^i_j)$ is
+
+$$ h(\sigma^i_j) = max_{g \in l} h(g, \sigma^i_j)$$
+
+\subsubsection{Further Optimization}
+
+In order to perform further optimization, the quantum compiler can incoroperate the information of not only the current layer, but also that of the next layer.  For example, the cost of the current layer can be 
+$$ h(\sigma^i_j) = max_{g \in l_i \cup l_{i+1}} h(g, \sigma^i_j)$$
+
+\newpage
 
 \section{Distributed Computing}
 
@@ -698,9 +785,9 @@ This chapter explains several components that consists of distributed quantum co
 Distributed version of Shor's algorithm \cite{distributedshor} and Grover's algorithm \cite{distributedgrover}, both of which takes remote CNOTs (which will be discussed in a  later subsection) were presented in 2004 and 2012, respectively. 
 However, the quantum circuits shown in these studies are physical ones, in other words, something that will be implemented directly on physical hardware, not something that users will implement in their programs. 
 
-\subsection{Distributed Quantum Compiler}
+\subsection{Quantum Compiler for Distributed Quantum Computing}
 
- Quantum compiler is a software to optimize a quantum circuit defined in the given program to reduce the number of quantum gates and alleviate the effect of physical noise on that quantum state, and map that to the real hardware so that it will satisfy the connectivity constraint on that hardware \cite{qubitallocation}.  Just like the case of a local quantum software, distributed quantum computer also needs its distributed version, which is called "distributed quantum compiler" in order to convert some CNOT gates into remote CNOTs and optimize both its execution time and the number of quantum gates in total, especially that of non-local operations.  This work focuses on the methodology to optimize the total execution time over the distributed quantum computing setting.
+ Quantum compiler is a software to optimize a quantum circuit defined in the given program to reduce the number of quantum gates and alleviate the effect of physical noise on that quantum state, and map that to the real hardware so that it will satisfy the connectivity constraint on that hardware \cite{qubitallocation}.  Just like the case of a local quantum software, distributed quantum computer also needs its distributed version in order to convert some CNOT gates into remote CNOTs and optimize both its execution time and the number of quantum gates in total, especially that of non-local operations.  This work focuses on the methodology to optimize the total execution time over the distributed quantum computing setting.
  
  \subsection{Gate-Teleportation-Based Non-Local CNOT}
  
@@ -731,6 +818,8 @@ Suppose that a person would like to apply a non-local CNOT between $|a_0\rangle$
 		\caption{Quantum circuit for a non-local CNOT gate}
 	\end{center}
 \end{figure}
+
+\newpage 
 
 \subsection{Quantum Teleportation}
 
@@ -870,7 +959,7 @@ The last approach for the non-local CNOT gate aims to sort qubits in the quantum
 		\end{tikzpicture}
 		\caption{The quantum circuit after the data qubit swapping occurs}
 	\end{center}
-\end{figure}
+\end{figure}	
 
 \begin{algorithm}
  \caption{Algorithm for Data-Qubit Swapping}
