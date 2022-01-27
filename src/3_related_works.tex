@@ -34,13 +34,28 @@ The work \cite{distributedquantumcompiler} discussed the design of a general-pur
  This study also derived the analytical upper bound of the circuit depth both for the entanglement-based non-local operation and the data-qubit-swapping-based non-local operation.
  
  The depth overhead of the entanglement-swapping-based strategy would be at most 
- $$\frac{n}{2}d_{es}$$
- $$d_{es} = c_{le} + c_{bsm} + c_{cx}$$. 
  
-  On the other hand, the depth overhead of the data-qubit-swapping strategy is 
-  $$ \frac{n}{4}d_{qs} + d'_{qs}$$ 
-  $$ d_{qs} = 3(c_{le} + c_{bsm} + c_{cx})$$
-  $$ d'_{qs} = c_{le} + c_{cx}$$
+  \begin{equation}
+ \frac{n}{2}d_{es}
+  \end{equation}
+  
+ \begin{equation}
+ d_{es} = c_{le} + c_{bsm} + c_{cx}
+  \end{equation} 
+ 
+  On the other hand, the depth overhead of the data-qubit-swapping strategy is
+  
+   \begin{equation} 
+  \frac{n}{4}d_{qs} + d'_{qs}
+   \end{equation} 
+   
+   \begin{equation} 
+   d_{qs} = 3(c_{le} + c_{bsm} + c_{cx})
+    \end{equation}
+    
+  \begin{equation}
+   d'_{qs} = c_{le} + c_{cx}
+   \end{equation}
   
   $n$ is the number of qubits, $c_{le}$ is the number of layers required to perform the link entanglement, $c_{bms}$ is that to perform entanglement swapping, $c_{cx}$ is that to perform remote CNOTs.
   This study mentions that parameters $c_{le}$, $c_{bms}$, $c_{cx}$ heavily depends on the underlying hardware architecture.

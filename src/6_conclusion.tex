@@ -1,0 +1,30 @@
+\chapter{Conclusion}
+\label{discussion}
+
+\section{Discussion} 
+
+This thesis aims to propose an effective scheme for qubit allocation for distributed quantum computing to reduce the total execution time, and the chart in the previous chapter clearly demonstrates that the case when the both gate execution cost and communication cost are optimized performs the best.  This fact also states that, similar to the task allocation algorithm for classical distributed computing, people have to take both the task (quantum gate) execution cost and communication cost into account in order to come up with an (nearly-) optimal qubit allocation in terms of reducing the total execution time.
+
+ In this experiment, the total execution time of the gate-cost-based case and that of the communication-cost-based-case are almost the same. However, there are some cases where either the gate-cost-based optimization or the communication-cost-based optimization works better than the other.  For example, gate-cost-based optimization would work better if the given circuit have more single qubit gates than CNOT gates and these gates are fairly allocated to each qubit.  On the other hand, the communication-cost-based optimization yields a better performance if the given quantum circuit has more CNOT gates than one-qubit gates, and each processor has less neighboring processors, such as linear topology.
+ 
+ \section{Significance of This Work}
+
+ This work has two main significance for the field of distributed quantum computing. 
+ One is that the scheme proposed in this thesis is the first execution-time-oriented qubit allocation algorithm for distributed quantum computing. 
+ 
+  If the mankind finally overcomes the problem of severe physical noise on each quantum hardware and achieves the large-scale, fault-tolerant, and even distributed quantum computing, they may want to accelerate the whole computing process to achieve more efficient quantum computing. 
+  
+  In order to speed up the execution of a large-scale quantum circuit with enormous amount of quantum gates on heterogeneous quantum processors, they have to care about both the execution time on each quantum processor and communication cost between each pair of those processors. 
+ 
+ The other significance is that the qubit allocation with the minimum amount of communication is, at least, not always optimal in terms of its total execution time, as I stated in the previous section.
+ 
+ \section{Future Works}
+ 
+ This work only focuses on deciding which qubit should be allocated to which quantum processor, but a few other procedures have to be executed in order to achieve more efficient quantum computing.  For example, after qubits are allocated to each processor, the quantum circuit should be modified to reduce the number of  communication between quantum processors.  Also, similar to the qubit mapping schemes for local quantum processors, the algorithm for choosing which allocated qubit should be mapped to which physical qubit should also be investigated.
+
+
+
+%%% Local Variables:
+%%% mode: japanese-latex
+%%% TeX-master: "．/thesis"
+%%% End:

@@ -27,24 +27,45 @@ The problem is how to allocate each qubits in the given quantum circuit to which
 Suppose $A$ be the optimal assignment such that $A(q_i) = p_j$ if a qubit $q_i$ in the given quantum circuit to a quantum processor $p_j$. Qubits allocated to a quantum processor $p_j$ is denoted as $qubits_j$, single qubit gates allocated to a qubit $q_i$ is $gates_i$ and the execution time on a quantum processor $q_j$ is $time_j$.
 
 The cost of executing all single-qubit gates on a qubit $q_i$ on a quantum processor $p_j$ is 
-$$\sum_{gate \in gates_i} time_j$$
+
+ \begin{equation}
+\sum_{gate \in gates_i} time_j
+ \end{equation}
+ 
 Therefore, the cost of executing all the single-qubit gates on all the qubits allocated on quantum processor $p_j$ is 
-$$GATECOST_j = \sum_{qubit \in qubits_j} \sum_{gate \in gates_{qubit}} time_j$$
+
+ \begin{equation}
+GATECOST_j = \sum_{qubit \in qubits_j} \sum_{gate \in gates_{qubit}} time_j
+ \end{equation}
 
 Suppose a CNOT gate CNOT(control, target) involves two qubits, which are control $\in qubits_s$ and target $\in qubits_t$ and all the CNOT gates in a quantum processor $p_j$ are denoted as $CNOTs_{j}$.
 
 The communication cost in a quantum processor $p_j$ is 
-$$COMMCOST_j = \sum_{ \substack{CNOT (control, target) \in CNOTs_{j} \\ control \in q_s \\ target \in q_t}} pathlength(s, k)$$
+
+ \begin{equation}
+COMMCOST_j = \sum_{ \substack{CNOT (control, target) \in CNOTs_{j} \\ control \in q_s \\ target \in q_t}} pathlength(s, k)
+ \end{equation}
+ 
+ 
 $pathlength$ is the length of the path between the processor $s$ and the processor $t$ on the given network topology, and the processor $j$ is same as at least either the processor $s$ or the processor $t$.
 
 Thus, the total cost on a quantum processor $p_j$ is 
-$$COST_j = GATECOST_j + COMMCOST_j$$
+
+ \begin{equation}
+COST_j = GATECOST_j + COMMCOST_j
+ \end{equation}
 
 Both execution of single qubit gates and communication with other processors affect the total execution time on each processor, and because the processor with the greatest cost will decide the total execution time on the whole distributed quantum system, the following value should be calculated.
-$$MAXCOST = \max \{COST_j | 1 \leq j \leq N\}$$
+
+ \begin{equation}
+MAXCOST = \max \{COST_j | 1 \leq j \leq N\}
+ \end{equation}
 
 Also, minimizing this value will reduce both the execution time for quantum gates execution and interprocessor communication, and the objective function of this problem is 
-$$ min\,MAXCOST$$
+
+ \begin{equation}
+ min\,MAXCOST
+  \end{equation}
 
 \newpage
 
