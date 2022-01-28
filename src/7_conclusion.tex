@@ -10,15 +10,11 @@ This thesis aims to propose an effective scheme for qubit allocation for distrib
  \section{Significance of This Work}
 
  This work has two main significance for the field of distributed quantum computing. 
- One is that the scheme proposed in this thesis is the first execution-time-oriented qubit allocation algorithm for distributed quantum computing. 
- 
-  If the mankind finally overcomes the problem of severe physical noise on each quantum hardware and achieves the large-scale, fault-tolerant, and even distributed quantum computing, they may want to accelerate the whole computing process to achieve more efficient quantum computing. 
-  
-  In order to speed up the execution of a large-scale quantum circuit with enormous amount of quantum gates on heterogeneous quantum processors, they have to care about both the execution time on each quantum processor and communication cost between each pair of those processors. 
+ One is that the scheme proposed in this thesis is the first execution-time-oriented qubit allocation algorithm for distributed quantum computing. If the mankind finally overcomes the problem of severe physical noise on each quantum hardware and achieves the large-scale, fault-tolerant, and even distributed quantum computing, they may want to accelerate the whole computing process to achieve more efficient quantum computing. In order to speed up the execution of a large-scale quantum circuit with enormous amount of quantum gates on heterogeneous quantum processors, they have to care about both the execution time on each quantum processor and communication cost between each pair of those processors. 
  
  The other significance is that the qubit allocation with the minimum amount of communication is, at least, not always optimal in terms of its total execution time, as I stated in the previous section.
  
- \section{Future Works}
+ \section{Future Work}
  
  This work only focuses on deciding which qubit should be allocated to which quantum processor, but a few other procedures have to be executed in order to achieve more efficient quantum computing.  For example, after qubits are allocated to each processor, the quantum circuit should be modified to reduce the number of  communication between quantum processors.  Also, similar to the qubit mapping schemes for local quantum processors, the algorithm for choosing which allocated qubit should be mapped to which physical qubit should also be investigated.
 

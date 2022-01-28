@@ -1,6 +1,6 @@
 \chapter{Evaluation}
 
- In this chapter, the author investigates the efficiency of the allocation method proposed in the previous chapter, under the distributed quantum computing system with several processors with different execution time in a limited network topology.  
+This chapter investigates the efficiency of the allocation method proposed in the previous chapter, under the distributed quantum computing system with several processors with different execution time in a limited network topology.  
  
 \section{Settings}
 In this experiment, three 2-qubit quantum processors with different execution time are connected in a linear topology.
@@ -10,9 +10,9 @@ In this experiment, three 2-qubit quantum processors with different execution ti
   			\includegraphics[width=8cm]{img/first_experiment.png}
 			\caption{The details of each quantum processor}
 		\end{center}
-	\end{figure}
+	\end{figure}.
  
- The author executed the following circuit on these three quantum processors.  This circuit is a quantum circuit for encoding 5-qubit quantum repetition code, which is one of the circuits used for benchmarking purposes \cite{qasmbench}.
+ The author executed the following circuit on these three quantum processors.  This circuit is a quantum circuit for encoding 5-qubit quantum repetition code, which is one of the circuits used for benchmarking purposes \cite{QASMbench}.
  
   \begin{figure}[ht]
   	\begin{center}
@@ -49,7 +49,7 @@ In this experiment, three 2-qubit quantum processors with different execution ti
         			\end{yquant}
 		\end{tikzpicture}
 	\end{center}
-\end{figure}
+\end{figure}.
 
 \newpage
 \section{Result}
@@ -62,7 +62,7 @@ This experiment was executed using the distributed quantum computing simulator h
   \item when only the communication cost is optimized
   \item when both costs are optimized
  \end{itemize}
-\end{quote}
+\end{quote}.
 
 I measured the total execution time in the four cases, ten trials for each, and compared the average execution time.  Here is the experiment result.
 
@@ -71,9 +71,9 @@ I measured the total execution time in the four cases, ten trials for each, and 
   			\includegraphics[width=10cm]{img/first_experiment_plot.png}
 			\caption{Result}
 		\end{center}
-\end{figure}
+\end{figure}.
 
-The figure shows that when the both costs are optimized outperforms the three other cases.
+The figure shows that the total execution time becomes the shortest when the both gate execution cost and communication cost are optimized.
  
 %%% Local Variables:
 %%% mode: japanese-latex

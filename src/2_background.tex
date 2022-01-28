@@ -6,7 +6,7 @@
 
 \subsection{Quantum Bit}
 
- A classical bit has two different states, which are 0 and 1.   Instead, those of a quantum bit (or \textbf{qubit} in short) are $|0\rangle$ and $|1\rangle$, each of which can be described as a vector.  
+ A classical bit has two different states, which are 0 and 1.   Instead, those of a quantum bit (or \textbf{qubit} in short) are $|0\rangle$ and $|1\rangle$, each of which can be described as a vector. For example  
  $$|0\rangle = \left[
 \begin{array}{c}
 1 \\
@@ -19,9 +19,9 @@
 1 \\
 \end{array}
 \right]$$
-
+.
 The state of a single 	qubit $|\psi\rangle$ can be described as follows.
-$$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathbb{C}, |\alpha|^2+|\beta|^2=1)$$
+$$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathbb{C}, |\alpha|^2+|\beta|^2=1)$$.
  After the operation called measurement, the quantum state would be collapsed into either 0 or 1.  The measurement probability of 0 is $|\alpha|^2$ and that of 1 is $|\beta|^2$. In other words, a single qubit can take both states probabilistically at the same time.  For instance, a qubit can be 
  
 \begin{equation}
@@ -35,13 +35,13 @@ $$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathb
 	
 \begin{equation}
 	|\psi\rangle = e^{i\gamma} (\cos{\frac{\theta}{2}} + e^{i\phi} \sin{\frac{\theta}{2}}) (\gamma, \phi, \theta \in \mathbb{R})
-\end{equation} 
+\end{equation}.
 
 	Because $e^{i\gamma}$ is just a global state, it can be ignored and the same state can be rewritten like this.
 	
 \begin{equation}
 	 |\psi\rangle =  \cos{\frac{\theta}{2}} + e^{i\phi} \sin{\frac{\theta}{2}} (\phi, \theta \in \mathbb{C})
-\end{equation} 
+\end{equation}
 
 	Because the equation above has two parameters,  any pure single qubit state can be considered as a point on the surface and its geometric representation is called \textbf{Bloch sphere}.
 	
@@ -64,17 +64,19 @@ $$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathb
   \draw[densely dotted,->](o)--(0,-2)node[below]{\ $\ket{1}$};%-z |1>
   \draw[dotted](o)--(0.7,-0.46)--(0.7,1);%triangle
   }
+  
+  \newpage
  \caption{Bloch Sphere}
  \end{figure}
 	
  \subsection{Multi-Qubit State}
   The quantum state for multi-qubits is a \textbf{tensor product} of a state vector of each qubit.  The general notation of two qubit state is
-   $$ |\psi\rangle = (\alpha |0\rangle + \beta |1\rangle) \otimes  (\gamma |0\rangle + \delta |1\rangle) $$
-   
-\begin{equation}
-    = \alpha \gamma |00\rangle + \alpha \delta |01\rangle + \beta \gamma |10\rangle + \beta \delta |11\rangle 
-\end{equation}
-  $$(\alpha, \beta, \gamma, \delta \in \mathbb{C}, |\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1)$$
+  
+\begin{flalign}
+    |\psi\rangle & = (\alpha |0\rangle + \beta |1\rangle) \otimes  (\gamma |0\rangle + \delta |1\rangle) \\
+    & = \alpha \gamma |00\rangle + \alpha \delta |01\rangle + \beta \gamma |10\rangle + \beta \delta |11\rangle \\ 
+   & (\alpha, \beta, \gamma, \delta \in \mathbb{C}, |\alpha|^2+|\beta|^2+|\gamma|^2+|\delta|^2=1)
+ \end{flalign}.
   
   For example, the state $|00\rangle$ is equal to 
   
@@ -100,7 +102,7 @@ $$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathb
 0 \\
 \end{array}
 \right]
-\end{equation}
+\end{equation}.
 
  However, some quantum states such as
  
@@ -123,7 +125,7 @@ I = \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 For example,
 
@@ -165,7 +167,7 @@ X|1\rangle = \begin{bmatrix}
 \end{array}
 \right]
 = |1\rangle
-\end{equation}
+\end{equation}.
 
 
 \subsubsection{X gate}
@@ -177,7 +179,7 @@ X = \begin{bmatrix}
 0 & 1 \\
 1 & 0 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 For example,
 \begin{equation}
@@ -218,7 +220,7 @@ X|0\rangle = \begin{bmatrix}
 \end{array}
 \right]
 = |0\rangle
-\end{equation}
+\end{equation}.
 
 \subsubsection{Y gate}
 
@@ -229,7 +231,7 @@ Y gate flips the logical value of a qubit and add an imaginary number.
 0 & -i \\
 i & 0 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 For example,
 \begin{equation}
@@ -270,7 +272,7 @@ i & 0 \\
 \end{array}
 \right]
 = -i|0\rangle
-\end{equation}
+\end{equation}.
 
 \subsubsection{Z gate}
 
@@ -281,7 +283,7 @@ Z gate flips the phase of $ |1\rangle$
 1 & 0 \\
 0 & -1 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 For example,
 \begin{equation}
@@ -322,7 +324,7 @@ Z|1\rangle = \begin{bmatrix}
 \end{array}
 \right]
 = -|1\rangle
-\end{equation}
+\end{equation}.
 
 \subsubsection{H gate}
 
@@ -332,7 +334,7 @@ H gate creates superposition.
 1 & 1\\
 1 & -1 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 For example,
 \begin{equation}
@@ -372,7 +374,7 @@ H|1\rangle = \begin{bmatrix}
 \end{array}
 \right]
 =\frac{1}{\sqrt{2}} (|0\rangle - |1\rangle)
-\end{equation}
+\end{equation}.
 
 \subsubsection{Rx gate}
  An Rx gate rotate the given quantum circuit on the x-axis of the Bloch sphere.
@@ -382,7 +384,7 @@ H|1\rangle = \begin{bmatrix}
 \cos{\frac{\theta}{2}} & -i\sin{\frac{\theta}{2}} \\
  -i\sin{\frac{\theta}{2}} & \cos{\frac{\theta}{2}}  \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
  
  For example,
  \begin{equation}
@@ -421,7 +423,7 @@ Rx(\theta)|1\rangle = \begin{bmatrix}
 \end{array}
 \right]
 =-i \sin{\frac{\theta}{2}}|0\rangle + \cos{\frac{\theta}{2}}|1\rangle
-\end{equation}
+\end{equation}.
 
 \subsubsection{Ry gate}
 
@@ -432,7 +434,7 @@ Rx(\theta)|1\rangle = \begin{bmatrix}
 \cos{\frac{\theta}{2}} & -i\sin{\frac{\theta}{2}} \\
  -i\sin{\frac{\theta}{2}} & \cos{\frac{\theta}{2}}  \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 \subsubsection{CNOT gate}
 
@@ -445,8 +447,9 @@ CNOT = \begin{bmatrix}
 0 & 0 & 0 & 1 \\
 0 & 0 & 1 & 0 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
+For example,
 \begin{equation}
 CNOT_{0,1}|10\rangle = 
 \begin{bmatrix}
@@ -499,7 +502,7 @@ CNOT_{0,1}|11\rangle =
 \end{array}
 \right] 
 = |10\rangle 
-\end{equation}
+\end{equation}.
 
 \subsubsection{Quantum gate for multi-qubit system}
 
@@ -521,7 +524,7 @@ X_0 \otimes X_1 =
 0 & 1 & 0 & 0 \\
 1 & 0 & 0 & 0 \\
 \end{bmatrix}
-\end{equation}
+\end{equation}.
 
 Therefore, 
 \begin{equation}
@@ -596,7 +599,7 @@ I_0 X_1 |00\rangle
 \end{array}
 \right] 
 = |01\rangle
-\end{equation}
+\end{equation}.
 
 \subsubsection{Measurement}
 
@@ -612,7 +615,7 @@ $$
 \ket{0} & \gate{H} & \qw & \targ{} & \ctrl{1} & \gate{H} & \meter{}\\
 \ket{0} & \gate{H} & \qw & \gate{X} & \targ{} & \qw & \meter{} \
 \end{quantikz}
-$$
+$$.
 
 Each horizontal line represents each qubit and the square boxes that contain alphabets mean single quantum gates.  The sign which involves a vertical line means a CNOT gate, and the box on the most right side indicates measurement. 
 
@@ -634,12 +637,12 @@ In the chapter 1.3, the author mentions about a special type of quantum states c
 
 \begin{equation}
  |\Psi^-\rangle = \frac{|01\rangle - |10\rangle}{\sqrt{2}}
- \end{equation}
+ \end{equation}.
 
 \newpage
 \subsection{Quantum compiler}
 
- Qubit compiler is a software that finds (near-) optimal mapping between the qubits in the program onto physical qubits on a quantum processor, which are constrained by their limited connectivity.  Also, its solution has to reduce the number of gates applied on those qubits, which ends up with less physical noise on the actual quantum state. In this chapter, the author will explain the algorithm to find the (near-) optimal qubit allocation presented in \cite{quantummapping}.
+ Quantum compiler is a software that finds (near-) optimal mapping between the qubits in the program onto physical qubits on a quantum processor, which are constrained by their limited connectivity.  Also, its solution has to reduce the number of gates applied on those qubits, which ends up with less physical noise on the actual quantum state. In this chapter, the author will explain the algorithm to find the (near-) optimal qubit allocation presented in \cite{quantummapping}.
  
  Here is the procedure of quantum compilation.   
   \begin{figure}[ht]
@@ -677,11 +680,11 @@ In the chapter 1.3, the author mentions about a special type of quantum states c
 
  First of all, the given quantum circuit is partitioned into several layers and a layer $l_i$ and all the quantum gates in a single layer $l_i$ do not share any qubits. Also, the number of the depth of a circuit is same as that of layers in the same circuit.
  
- After that, the qubit mapping is proposed in each layer $l_i$ and it does not have to correspond with that of the previous layer  $l_{i-1}$. Instead, a new layer of SWAP gates $\pi_i$ is inserted before the quantum compiler goes onto the next layer. In other words, the sequence of layers will be denoted as $l_0 \pi_1 l_1\pi_2 l_2 \dots$.
+ After that, the qubit mapping is proposed in each layer $l_i$ and it does not have to correspond with that of the previous layer  $l_{i-1}$. Instead, a new layer of SWAP gates $\pi_i$ is inserted before the quantum compiler goes onto the next layer. In other words, the sequence of layers will be denoted as $l_0 \pi_1 l_1\pi_2 l_2$.
  
 \subsubsection{Determining the Qubit Mapping}
 
-The quantum compiler determines the mapping relationship between program qubits onto physical qubits on an actual quantum processor for each layer $l_i$, which is denoted as $\sigma^i_j: \{q_0, q_1, q_2, \dots q_{n-1}\} \rightarrow \{Q_0, Q_1, Q_2, \dots Q_{m-1}\}$. ($j$ is a unique id for that relationship, $n$ is the number of qubits on the given program, and $m$ is the number of physical qubits on a quantum processor) This relationship has to satisfy the CNOT-constraints on that hardware and the initial mapping is same of that of the previous layer, in other words, $\sigma^{i-1} = \sigma^i_0$.  The goal of this step is to find $\sigma^{i}$, which is the (sub-)optimal mapping relationship by adding minimum number of new operations by using an algorithm $A^{*}$ search.
+The quantum compiler determines the mapping relationship between program qubits onto physical qubits on an actual quantum processor for each layer $l_i$, which is denoted as $\sigma^i_j: \{q_0, q_1, q_2, \dots q_{n-1}\} \rightarrow \{Q_0, Q_1, Q_2, \dots Q_{m-1}\}$ ($j$ is a unique id for that relationship, $n$ is the number of qubits on the given program, and $m$ is the number of physical qubits on a quantum processor). This relationship has to satisfy the CNOT-constraints on that hardware and the initial mapping is same of that of the previous layer, in other words, $\sigma^{i-1} = \sigma^i_0$.  The goal of this step is to find $\sigma^{i}$, which is the (sub-)optimal mapping relationship by adding minimum number of new operations by using an algorithm $A^{*}$ search.
 
 \subsubsection{A* Search}
 $A^{*}$ search is a state-space-based search algorithm that can be applied to states whose relationships have a tree structure.  The cost of the next node from the root to the node $x$ is $f(x)$, and $g(x)$ is the cost of the path from the root to the current state, and $h(x)$ is the additional cost of the link between the current state and the next state.　
@@ -690,7 +693,7 @@ $A^{*}$ search is a state-space-based search algorithm that can be applied to st
 Therefore, 
 \begin{equation}
 f(x) = g(x) + h(x)
-\end{equation}
+\end{equation}.
 
 In the case of quantum compilation, the cost of the root state, which is the initial qubit mapping is 0. If the cost for the current state is $f(x)$, $g(x)$ is that of the previous mapping, and the $h(x)$ is the cost for additional layers.
 
@@ -698,7 +701,8 @@ If the current mapping $\sigma^i_j$ is followed by the next mapping  $\sigma^i_h
 
 \begin{equation}
  f(\sigma^i_j) = f(\sigma^i_j) + 7 \times \textrm{(number of SWAP gates)} 
-\end{equation}
+\end{equation}.
+
 The equation above contains 7, because a single SWAP gate requires 7 elementary gates.
 
 \begin{figure}[ht]
@@ -723,21 +727,21 @@ If you assign physical qubits $Q_c$ as a control qubit and $Q_t$ as a target qub
 
 \begin{equation}
 h(g, \sigma^i_j) = 7 \times (\hat{p} - 1)
-\end{equation}
+\end{equation}.
 
 Therefore, the gate cost of additional layer $l$, which is $h(\sigma^i_j)$ is
 
 \begin{equation}
-h(\sigma^i_j) = max_{g \in l} h(g, \sigma^i_j)
-\end{equation}
+h(\sigma^i_j) = \operatorname{max}_{g \in l} h(g, \sigma^i_j)
+\end{equation}.
 
 \subsubsection{Further Optimization}
 
 In order to perform further optimization, the quantum compiler can incoroperate the information of not only the current layer, but also that of the next layer.  For example, the cost of the current layer can be
 
 \begin{equation} 
-h(\sigma^i_j) = max_{g \in l_i \cup l_{i+1}} h(g, \sigma^i_j)
-\end{equation}
+h(\sigma^i_j) = \operatorname{max}_{g \in l_i \cup l_{i+1}} h(g, \sigma^i_j)
+\end{equation}.
 
 \newpage
 
@@ -820,52 +824,48 @@ Here are some definitions of the task allocation problem in distributed system. 
 Given a distributed system $G = <V, E>$, where V is the set of nodes and E is the set of communication link between two different nodes, i.e. $\forall v_i. v_j \in V, \exists <v_i, v_j> \in E$.  The set of the resources in $a_i$ is $R_{a_i}$ and that required by the task $t$ is $R_t$.
 
 \begin{enumerate}
-	\item{$R_t \subseteq$ $\bigcup_{\forall a_i \in A_t} R_{a_i}$}
-	\item{The objective should be either minimizing the execution time \cite{time} or maximizing reliability \cite{reliability}}
-	\item{The nodes in $A_t$ can execute the allocated task under the constraint of the network structure $\forall a_i, a_j \in A_t \Rightarrow P_{ij} \subseteq E$ where $P_{ij}$ denotes the path between $a_i$ and $a_j$}
+	\item{$R_t \subseteq$ $\bigcup_{\forall a_i \in A_t} R_{a_i}$}.
+	\item{The objective should be either minimizing the execution time \cite{time} or maximizing reliability \cite{reliability}}.
+	\item{The nodes in $A_t$ can execute the allocated task under the constraint of the network structure $\forall a_i, a_j \in A_t \Rightarrow P_{ij} \subseteq E$ where $P_{ij}$ denotes the path between $a_i$ and $a_j$}.
 \end{enumerate}
 
 Task allocation is known to be a NP-problem \cite{np}.
 
 \subsection{Distributed Task Allocation Algorithms}
 
-Due to the fact that task allocation problem is classified as NP-hard, many works have proposed heuristic functions for distributed task allocations in various settings.  Here, the author is going to introduce a simple objective function presented in the paper \cite{algorithm}, which is this work is based on.
+Due to the fact that task allocation problem is classified as NP-hard, many works have proposed heuristic functions for distributed task allocations in various settings.  Here, the author is going to introduce a simple objective function presented in the paper \cite{algorithm}, which is this work is based on. It is assumed that a multicomputer system consists of $N$ heterogeneous processors with some amount of computational power and the size of memory.  Also, the given program includes $M$ communicating tasks, which is the nodes in the task interaction graph $G(V, E)$ ($V$ is $M$ communicating tasks and E is a set of communication relationship between two tasks).
 
-It is assumed that a multicomputer system consists of $N$ heterogeneous processors with some amount of computational power and the size of memory.  Also, the given program includes $M$ communicating tasks, which is the nodes in the task interaction graph $G(V, E)$ ($V$ is $M$ communicating tasks and E is a set of communication relationship between two tasks).
+The objective of this task allocation is to minimize the total execution time. In other words, the author has to come up with the optimal allocation $A$, which $A(i) = p$ indicates that the task $i$ is allocated to the processor $p$ and $TASKS_p$ is a group of tasks that are allocated to a processor $p$. The total execution in the heterogeneous computing cluster is same as the execution time in the most heavily loaded processor.  Two main types of costs should be considered. One is the execution cost.  The execution load in the processor $p$ is the cost of processing all the tasks that are assigned to $p$ for the allocation $A$. 
 
-The objective of this task allocation is to minimize the total execution time. In other words, the author has to come up with the optimal allocation $A$, which $A(i) = p$ indicates that the task $i$ is allocated to the processor $p$ and $TASKS_p$ is a group of tasks that are allocated to a processor $p$.
-
- The total execution in the heterogeneous computing cluster is same as the execution time in the most heavily loaded processor.  Two main types of costs should be considered.
- 
- One is the execution cost.  The execution load in the processor $p$ is the cost of processing all the tasks that are assigned to $p$ for the allocation $A$. Suppose $C_{ip}$ is the cost of processing the task $i$ on the processor $p$, then the total execution cost on the processor $p$ is 
+Suppose $C_{ip}$ is the cost of processing the task $i$ on the processor $p$, then the total execution cost on the processor $p$ is 
  
  \begin{equation}
 \operatorname{EXEC_p } = \sum_{task \in  \operatorname{TASKS_p}} \operatorname{C_{task, p}}
- \end{equation}
+ \end{equation}.
  
   The other cost is the communication cost, which can be calculated by the following formula.
 
 \begin{equation}  
 \operatorname{COMM_p} = \sum_{task \in \operatorname{TASKS_p}} \sum_{(i=j), \\(i, j) \in \operatorname{E} , \\ A(j) \neq p} \operatorname{d_{ij}} * \operatorname{cc_{avg}}
-\end{equation}
+\end{equation}.
 
 $d_{ij}$ is the data sent between two communicating tasks between $i$, $j$ and $cc_{avg}$ is the average amount of transferring a data unit through the network transmission media.
   
  Therefore, the total cost for the processor $p$ is 
  \begin{equation}
 \operatorname{COST_p} = \operatorname{EXEC_p} + \operatorname{COMM_p}
- \end{equation}
+ \end{equation}.
  Because the total execution time is equal to the execution of the most heavily loaded processor, the total execution time can be described as following.
  
  \begin{equation}
  \operatorname{COST} =  \operatorname{max} \{\operatorname{COST_p} | 1 \leq \operatorname{p} \leq \operatorname{n}\}
-  \end{equation}
+  \end{equation}.
  
  Therefore, the object function is 
  
  \begin{equation}
  \operatorname{min} \,\,\operatorname{COST}
- \end{equation}
+ \end{equation}.
 
 \subsection{Models of Process Communication}
 
@@ -890,11 +890,9 @@ However, the quantum circuits shown in these studies are physical ones, in other
  
  \subsection{Gate-Teleportation-Based Non-Local CNOT}
  
-Non-local operations are controlled operations between two qubits on two different processors there are three main approach to achieve them.
+Non-local operations are controlled operations between two qubits on two different processors there are three main approach to achieve them. The first operation is the gate teleporation approach, and is also called non-local quantum gates \cite{gateteleportation} and telegate \cite{arithmetic}.  Here is the quantum circuit that achieve this operation.
 
-The first operation is the gate teleporation approach, and is also called non-local quantum gates \cite{gateteleportation} and telegate \cite{arithmetic}.  Here is the quantum circuit that achieve this operation.
-
-Suppose that a person would like to apply a non-local CNOT between $|a_0\rangle$ on one processor and $|b_0\rangle$ on the other processor.  In order to do this, he has to prepare a new bell pair between these two processors.  ($|p_i\rangle$ in the following circuit diagram comes from p in $|\psi (psi)^+\rangle$)
+Suppose that a person would like to apply a non-local CNOT between $|a_0\rangle$ on one processor and $|b_0\rangle$ on the other processor.  In order to do this, he has to prepare a new bell pair between these two processors.  
 
  \begin{figure}[ht]
   	\begin{center}

@@ -1,4 +1,4 @@
-\chapter{Related Works}
+\chapter{Related Work}
 \label{related works}
 
 \section{Performance of  An Interprocessor CNOT Gate}
@@ -16,7 +16,7 @@ Severals algorithm for finding the quantum circuit partition with minimum number
 
 \section{Quantum Compiler For Distributed Quantum Computing}
 
-Ferrari et al. \cite{distributedquantumcompiler} discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
+Ferrari \textit{et al.}  \cite{distributedquantumcompiler} discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
 
  This study also derived the analytical upper bound of the circuit depth both for the entanglement-based non-local operation and the data-qubit-swapping-based non-local operation.
  
@@ -28,7 +28,7 @@ Ferrari et al. \cite{distributedquantumcompiler} discussed the design of a gener
   
  \begin{equation}
   \operatorname{d_{es}} =  \operatorname{c_{le}} +  \operatorname{c_{bsm}} +  \operatorname{c_{cx}}
-  \end{equation} 
+  \end{equation}.
  
   On the other hand, the depth overhead of the data-qubit-swapping strategy is
   
@@ -42,7 +42,7 @@ Ferrari et al. \cite{distributedquantumcompiler} discussed the design of a gener
     
   \begin{equation}
     \operatorname{d'_{qs}} =  \operatorname{c_{le}} + \operatorname{ c_{cx}}
-   \end{equation}
+   \end{equation}.
   
   $n$ is the number of qubits, $c_{le}$ is the number of layers required to perform the link entanglement, $c_{bms}$ is that to perform entanglement swapping, $c_{cx}$ is that to perform remote CNOTs.
   This study mentions that parameters $c_{le}$, $c_{bms}$, $c_{cx}$ heavily depends on the underlying hardware architecture.
@@ -53,19 +53,19 @@ Ferrari et al. \cite{distributedquantumcompiler} discussed the design of a gener
 
 \section{Toward Experimental Realization of Distributed Quantum Computing} 
 
-Jiang et al. \cite{jiang} proposed a method to perform distributed quantum computing even by using 5-qubit noisy processors and noisy quantum links. 
+Jiang \textit{et al.}\cite{jiang} proposed a method to perform distributed quantum computing even by using 5-qubit noisy processors and noisy quantum links. 
 
-Nickerson et al. \cite{nickerson} proposed a protocol to perform distributed quantum computing which utilizes topological codes to perform purification in the processor and also states that this protocol works if the error rate of quantum links is less than 10 \% and that of quantum processor for initialization, state manipulation, and measurement is less than 0.82 \%
+Nickerson \textit{et al.}\cite{nickerson} proposed a protocol to perform distributed quantum computing which utilizes topological codes to perform purification in the processor and also states that this protocol works if the error rate of quantum links is less than 10\% and that of quantum processor for initialization, state manipulation, and measurement is less than 0.82\% 
 
-Oi et al. \cite{oi} proposed an architecture for distributed, fault-tolerant quantum computing that enables scalable that achieves scalable quantum error correction.
+Oi \textit{et al.}\cite{oi} proposed an architecture for distributed, fault-tolerant quantum computing that enables scalable that achieves scalable quantum error correction. 
 
-Daiss et al. \cite{daiss} experimentally achieved a remote quantum gate and successfully implemented four Bell states.
+Daiss \textit{et al.}\cite{daiss} experimentally achieved a remote quantum gate and successfully implemented four Bell states. 
 
-Kim et al. \cite{kim} proposed an architecture for a large-scale quantum computing that combines ion-trap and optical technologies.
+Kim \textit{et al.}\cite{kim} proposed an architecture for a large-scale quantum computing that combines ion-trap and optical technologies. 
 
-LaRacuente \cite{laracuente} proposed an architecture of a superconducting chiplet that connects the physical processor and microwave links.
+LaRacuente \textit{et al.}\cite{laracuente} proposed an architecture of a superconducting chiplet that connects the physical processor and microwave links. 
 
-Van Meter et al. \cite{van} discusses required technology stack for distributed quantum computing in terms of various hardware technologies and software that manipulates these technologies.
+Van Meter \textit{et al.}\cite{van} discusses required technology stack for distributed quantum computing in terms of various hardware technologies and software that manipulates these technologies.
 
 
 

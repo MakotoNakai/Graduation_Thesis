@@ -17,52 +17,52 @@ Previous works about qubit allocation on a single quantum processor tries to imp
 
 Suppose a distributed quantum computing system consists of $N$ quantum processors connected via communication links. Each quantum processor has limited number of qubits and execution time.
 
-A quantum circuit in the program consists of several qubits and $M$ gates, including CNOTs which corresponds to an interaction graph $G(V, E)$. $V$ represents a set of qubits and $E$ represents set of two qubits involved in each CNOT gate.  $q_i \in V$ is labeled by the qubit index, and $(control, target) \in E$ is labeled by control-target relationship of all the CNOT gates.
+A quantum circuit in the program consists of several qubits and $M$ gates, including CNOTs which corresponds to an interaction graph $G(V, E)$. $V$ represents a set of qubits and $E$ represents set of two qubits involved in each CNOT gate.  $q_i \in V$ is labeled by the qubit index, and $(\operatorname{control}, \operatorname{target}) \in E$ is labeled by control-target relationship of all the CNOT gates.
 
 The problem is how to allocate each qubits in the given quantum circuit to which processor with varying execution time in order to minimize the total execution time. This problem can be formulated as an optimization problem, which requires a cost function, which is the value to either maximize or minimize to acquire the optimal solution.
 
 \section{Objective Function}
-Suppose $A$ be the optimal assignment such that $A(q_i) = p_j$ if a qubit $q_i$ in the given quantum circuit to a quantum processor $p_j$. Qubits allocated to a quantum processor $p_j$ is denoted as $qubits_j$, single qubit gates allocated to a qubit $q_i$ is $gates_i$ and the execution time on a quantum processor $q_j$ is $time_j$.
+Suppose $A$ be the optimal assignment such that $A(q_i) = p_j$ if a qubit $q_i$ in the given quantum circuit to a quantum processor $p_j$. Qubits allocated to a quantum processor $p_j$ is denoted as $\operatorname{qubits_j}$, single qubit gates allocated to a qubit $q_i$ is $gates_i$ and the execution time on a quantum processor $q_j$ is $\operatorname{time_j}$.
 
 The cost of executing all single-qubit gates on a qubit $q_i$ on a quantum processor $p_j$ is 
 
  \begin{equation}
 \sum_{ \operatorname{gate} \in  \operatorname{gates_i}}  \operatorname{time_j}
- \end{equation}
+ \end{equation}.
  
 Therefore, the cost of executing all the single-qubit gates on all the qubits allocated on quantum processor $p_j$ is 
 
  \begin{equation}
 \operatorname{GATECOST_j }= \sum_{ \operatorname{qubit} \in  \operatorname{qubits_j}} \sum_{ \operatorname{gate} \in  \operatorname{gates_{qubit}}}  \operatorname{time_j}
- \end{equation}
+ \end{equation}.
 
-Suppose a CNOT gate CNOT(control, target) involves two qubits, which are control $\in qubits_s$ and target $\in qubits_t$ and all the CNOT gates in a quantum processor $p_j$ are denoted as $CNOTs_{j}$.
+Suppose a CNOT gate CNOT(control, target) involves two qubits, which are control $\in qubits_s$ and target $\in \operatorname{qubits_t}$ and all the CNOT gates in a quantum processor $p_j$ are denoted as $\operatorname{CNOTs_{j}}$.
 
 The communication cost in a quantum processor $p_j$ is 
 
  \begin{equation}
- \operatorname{COMMCOST_j} = \sum_{ \substack{ \operatorname{CNOT} ( \operatorname{control},  \operatorname{target}) \in  \operatorname{CNOTs_{j}} \\  \operatorname{control} \in  \operatorname{q_s} \\  \operatorname{target} \in  \operatorname{q_t}}} pathlength(s, k)
- \end{equation}
+ \operatorname{COMMCOST_j} = \sum_{ \substack{ \operatorname{CNOT} ( \operatorname{control},  \operatorname{target}) \in  \operatorname{CNOTs_{j}} \\  \operatorname{control} \in  \operatorname{q_s} \\  \operatorname{target} \in  \operatorname{q_t}}} \operatorname{path\_length}(s, k)
+ \end{equation}.
  
-pathlengthis the length of the path between the processor $s$ and the processor $t$ on the given network topology, and the processor $j$ is same as at least either the processor $s$ or the processor $t$.
+$\operatorname{path}\_\operatorname{length}$ is the length of the path between the processor $s$ and the processor $t$ on the given network topology, and the processor $j$ is same as at least either the processor $s$ or the processor $t$.
 
 Thus, the total cost on a quantum processor $p_j$ is 
 
  \begin{equation}
  \operatorname{COST_j} =  \operatorname{GATECOST_j} +  \operatorname{COMMCOST_j}
- \end{equation}
+ \end{equation}.
 
 Both execution of single qubit gates and communication with other processors affect the total execution time on each processor, and because the processor with the greatest cost will decide the total execution time on the whole distributed quantum system, the following value should be calculated.
 
  \begin{equation}
  \operatorname{MAXCOST} = \max \{ \operatorname{COST_j} | 1 \leq j \leq N\}
- \end{equation}
+ \end{equation}.
 
 Also, minimizing this value will reduce both the execution time for quantum gates execution and interprocessor communication, and the objective function of this problem is 
 
  \begin{equation}
   \operatorname{min}\, \operatorname{MAXCOST}
-  \end{equation}
+  \end{equation}.
   
   In the chapter 5, the optimization of this proposed objective function is performed by one of the most popular heuristic optimization algorithm called simulated annealing, which will be explained in the following section.
 
