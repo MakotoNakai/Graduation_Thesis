@@ -81,7 +81,7 @@ Here is the pseudocode for the simulated annealing algorithm.
  \Function {SimulatedAnnealing}{A, T, IterNum}
   \State{A' = A}
  \For {iter := 1 to IterNum}
-     \State{temp := $T * (1- iter/IterNum)$}
+     \State{temp := $\operatorname{T} * (1- \operatorname{iter/IterNum})$}
      \State{copyA $\leftarrow$ copy(A')}
      \State{newA $\leftarrow$ move(copyA)}
      \State{eng $\leftarrow$ calc\_energy(copyA)}
@@ -103,48 +103,47 @@ Here is the pseudocode for the simulated annealing algorithm.
  \Function {move}{}
  \State{$\operatorname{P_i}$ $\leftarrow$ a randomly selected processor}
  \State{$\operatorname{P_j}$ $\leftarrow$ another randomly selected processor}
- \State{$\operatorname{qindex_i}$ $\leftarrow$ a randomly selected qubit index from 0 to $len(qubits_i)$}
- \State{$\operatorname{qindex_j}$ $\leftarrow$ a randomly selected qubit index from 0 to $len(qubits_j)$}
- %\State{$A[P_i][qindex_i], A[P_j][qindex_j] = A[P_j][qindex_j], A[P_i][qindex_i]}$}
- \State {return A}
-  \EndFunction
-   \end{algorithmic}
+ \State{$\operatorname{qindex_i}$ $\leftarrow$ a randomly selected qubit index from 0 to $\operatorname{len(qubits_i)}$}
+ \State{$\operatorname{qindex_j}$ $\leftarrow$ a randomly selected qubit index from 0 to $\operatorname{len(qubits_j)}$}
+\State{$\operatorname{A[P_i][qindex_i]}$, $\operatorname{A[P_j][qindex_j]}$ = $\operatorname{A[P_j][qindex_j]}$, $\operatorname{A[P_i][qindex_i]}$}
+\EndFunction
+ \end{algorithmic}
  \end{algorithm}
   
  \begin{algorithm}
  \caption{Calculating the energy value}
   \begin{algorithmic}[1]
- \Require initial allocation $A$  $\{P_0: qubits_0, P_1: qubits_1, \dots P_n: qubits_n\}$, a quantum gate list $gate\_list$ $\{gate_0, \dots, gate_N\}$, an execution time list $time\_list$ [$time\_0, \dots time_N$], network topology N
+ \Require initial allocation $\operatorname{A}$  $\{\operatorname{P_0}: \operatorname{qubits_0}, \operatorname{P_1}: \operatorname{qubits_1}, \dots \operatorname{P_n}: \operatorname{qubits_n}\}$, a quantum gate list $\operatorname{gate\_list}$ $\{\operatorname{gate_0}, \dots, \operatorname{gate_N}\}$, an execution time list $\operatorname{time\_list}$ [$\operatorname{time\_0}, \dots \operatorname{time_N}$], network topology N
  \Ensure An energy value $E$
- \Function {calc\_energy}{A, $gate\_list$}
- \State{$processor\_list \leftarrow list(A.keys())$}
- \State{$gate\_cost\_list  \leftarrow [0\,for\,processor\,in\,processor\_list]$}
- \State{$comm\_cost\_list \leftarrow [0\,for\,processor\,in\,processor\_list]$}
- \For {$processor\_id$ := $0$ to $len(processor\_list) - 1$}
- 	\For {$gate$ := $gate_0$ to $gate_N$}
-		\If{$gate.name \neq$ CNOT and $gate.index \in$ A[processor\_id]}
-			\State{$gate\_cost\_list[processor\_id]$ += $time\_list[processor\_id]$}
+ \Function {calc\_energy}{A, $\operatorname{gate\_list}$}
+\State{$\operatorname{processor\_list}$ $\leftarrow$ $\operatorname{[keys\,in\,A]}$}
+ \State{$\operatorname{gate\_cost\_list}$ $\leftarrow$ $\operatorname{[0\,for\,processor\,in\,processor\_list]}$}
+ \State{$\operatorname{comm\_cost\_list}$ $\leftarrow$ $\operatorname{[0\,for\,processor\,in\,processor\_list]}$}
+ \For {$\operatorname{processor\_id}$ := $0$ to $\operatorname{length\,of\,processor\_list} - 1$}
+ 	\For {$\operatorname{gate}$ := $\operatorname{gate_0}$ to $\operatorname{gate_N}$}
+		\If{$\operatorname{gate\_name} \neq$ CNOT and $\operatorname{gate\_index} \in$ A[processor\_id]}					
+		\State{$\operatorname{gate\_cost\_list[processor\_id]}$ += $\operatorname{time\_list[processor\_id]}$}
 		\EndIf
 	\EndFor
  \EndFor
- \State{$distance\_matrix \leftarrow N.distance\_matrix$}
- \For {$processor\_id$ := $0$ to $len(processor\_list) - 1$}
- 	\For {$gate$ := $gate_0$ to $gate_N$}
-		\If{$gate.name$ = CNOT}
-			\If{$gate.index, gate.target\_index \in A[processor\_id]$} 
-				\State{$comm\_cost\_list[processor\_id]$ += $0$}
-			\ElsIf{$gate.index \in A[processor\_id]$}
-				\For{$processor'\_id := 0$ to $len(processor\_list) - 1$}
-					\If{$gate.target\_index \in A[processor'\_id]$} 
-					\State{$distance  \leftarrow distance\_matrix[processor\_id][processor'\_id]$}
-					\State{$comm\_cost\_list[processor\_id]$ += $distance$}
+ \State{$\operatorname{distance\_matrix} \leftarrow \operatorname{N\_distance\_matrix}$}
+ \For {$\operatorname{processor\_id}$ := $0$ to $\operatorname{len(processor\_list)} - 1$}
+ 	\For {$\operatorname{gate}$ := $\operatorname{gate_0}$ to $\operatorname{gate_N}$}
+		\If{$\operatorname{gate\_name}$ = CNOT}
+			\If{$\operatorname{gate\_index, gate\_target\_index} \in\operatorname{A[processor\_id]}$} 
+				\State{$\operatorname{comm\_cost\_list[processor\_id]}$ += $0$}
+			\ElsIf{$\operatorname{gate_index} \in \operatorname{A[processor\_id]}$}
+				\For{$\operatorname{processor'\_id} := 0$ to $\operatorname{length\,of \,processor\_list} - 1$}
+					\If{$\operatorname{gate\_target\_index} \in \operatorname{A[processor'\_id]}$} 
+					\State{$\operatorname{distance}  \leftarrow \operatorname{distance\_matrix[processor\_id][processor'\_id]}$}
+					\State{$\operatorname{comm\_cost\_list[processor\_id]}$ += $\operatorname{distance}$}
 					\EndIf
 				\EndFor
-			\ElsIf{$gate.gate\_index \in A[processor\_id]$}
-				\For{$processor'\_id := 0$ to $len(processor\_list) - 1$}
-					\If{$gate.index \in A[processor'\_id]$} 
-					\State{$distance \leftarrow distance\_matrix[processor'\_id][processor\_id]$}
-					\State{$comm\_cost\_list[processor\_id]$ += $distance$}
+			\ElsIf{$\operatorname{gate_gate\_index} \in\operatorname{A[processor\_id]}$}
+				\For{$\operatorname{processor'\_id} := 0$ to $\operatorname{length\,of\,processor\_list} - 1$}
+					\If{$\operatorname{gate_index} \in \operatorname{A[processor'\_id]}$} 
+					\State{$\operatorname{distance} \leftarrow \operatorname{distance\_matrix[processor'\_id][processor\_id]}$}
+					\State{$\operatorname{comm\_cost\_list[processor\_id]}$ += $\operatorname{distance}$}
 					\EndIf
 				\EndFor
 			\EndIf
@@ -152,12 +151,12 @@ Here is the pseudocode for the simulated annealing algorithm.
 	\EndFor
  \EndFor
  
- \For {$processor\_id$ := $0$ to $len(processor\_list) - 1$}
- 	\State{$gate\_cost  \leftarrow gate\_cost\_list[processor\_id]$}
-	\State{$comm\_cost  \leftarrow comm\_cost\_list[processor\_id]$}
- 	\State{$cost\_list[processor\_id] \leftarrow gate\_cost + comm\_cost$}
+ \For {$\operatorname{processor\_id}$ := $0$ to $\operatorname{length\,of\,processor\_list} - 1$}
+ 	\State{$\operatorname{gate\_cost}  \leftarrow \operatorname{gate\_cost\_list[processor\_id]}$}
+	\State{$\operatorname{comm\_cost}  \leftarrow \operatorname{comm\_cost\_list[processor\_id]}$}
+ 	\State{$\operatorname{cost\_list[processor\_id]} \leftarrow \operatorname{gate\_cost + comm\_cost}$}
 \EndFor
-\State {return $\max cost\_list$}
+\State {return $\operatorname{\max cost\_list}$}
   \EndFunction 
  \end{algorithmic}
  \end{algorithm}
@@ -165,13 +164,13 @@ Here is the pseudocode for the simulated annealing algorithm.
  \begin{algorithm}
  \caption{Calculating the acceptance probability}
   \begin{algorithmic}[1]
-  \Require current energy value $cur\_eng$, new energy value $new\_eng$, current temperature $temp$
+  \Require current energy value $\operatorname{cur\_eng}$, new energy value $\operatorname{new\_eng}$, current temperature $\operatorname{temp}$
   \Ensure an acceptance probability $prob$
   \Function {accept\_prob}{cur\_eng, new\_eng, temp}
- 	\If {$cur\_eng$ $<$ $new\_eng$}
+ 	\If {$\operatorname{cur\_eng}$ $<$ $\operatorname{new\_eng}$}
 		\State{return $1$}
 	\Else
-		\State{return $\exp{(-(new\_eng - cur\_eng)/temp)}$}
+		\State{return $\operatorname{\exp{(-(new\_eng - cur\_eng)/temp)}}$}
 	\EndIf
    \EndFunction 
   \end{algorithmic}
