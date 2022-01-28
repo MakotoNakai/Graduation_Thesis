@@ -119,7 +119,7 @@ $$ |\psi\rangle = \alpha |0\rangle + \beta |1\rangle \,(\alpha, \beta \in \mathb
 I gate is equal to the 2x2 identity matrix, which is 
 
 \begin{equation}
- I = \begin{bmatrix}
+I = \begin{bmatrix}
 1 & 0 \\
 0 & 1 \\
 \end{bmatrix}
@@ -840,28 +840,32 @@ The objective of this task allocation is to minimize the total execution time. I
  One is the execution cost.  The execution load in the processor $p$ is the cost of processing all the tasks that are assigned to $p$ for the allocation $A$. Suppose $C_{ip}$ is the cost of processing the task $i$ on the processor $p$, then the total execution cost on the processor $p$ is 
  
  \begin{equation}
- EXEC_p = \sum_{task \in  TASKS_p} C_{task, p}
+\operatorname{EXEC_p } = \sum_{task \in  \operatorname{TASKS_p}} \operatorname{C_{task, p}}
  \end{equation}
  
   The other cost is the communication cost, which can be calculated by the following formula.
 
 \begin{equation}  
-COMM_p = \sum_{task \in TASKS_p} \sum_{(i=j), \\(i, j) \in E , \\ A(j) \neq p} d_{ij} * cc_{avg}
+\operatorname{COMM_p} = \sum_{task \in \operatorname{TASKS_p}} \sum_{(i=j), \\(i, j) \in \operatorname{E} , \\ A(j) \neq p} \operatorname{d_{ij}} * \operatorname{cc_{avg}}
 \end{equation}
 
- $d{ij}$ is the data sent between two communicating tasks between $i$, $j$ and $cc_{avg}$ is the average amount of transferring a data unit through the network transmission media.
+$d_{ij}$ is the data sent between two communicating tasks between $i$, $j$ and $cc_{avg}$ is the average amount of transferring a data unit through the network transmission media.
   
  Therefore, the total cost for the processor $p$ is 
  \begin{equation}
- COST_p = EXEC_p + COMM_p
+\operatorname{COST_p} = \operatorname{EXEC_p} + \operatorname{COMM_p}
  \end{equation}
  Because the total execution time is equal to the execution of the most heavily loaded processor, the total execution time can be described as following.
  
  \begin{equation}
- COST =  max \{COST_p | 1 \leq p \leq n\}
+ \operatorname{COST} =  \operatorname{max} \{\operatorname{COST_p} | 1 \leq \operatorname{p} \leq \operatorname{n}\}
   \end{equation}
  
- Therefore, the object function is $$min \,\,COST$$
+ Therefore, the object function is 
+ 
+ \begin{equation}
+ \operatorname{min} \,\,\operatorname{COST}
+ \end{equation}
 
 \subsection{Models of Process Communication}
 
@@ -1062,14 +1066,14 @@ The last approach for the non-local CNOT gate aims to sort qubits in the quantum
   \Require n-qubit circuit layer L with mod(n, 4) = 0 and $\frac{n}{2}$ CNOTs
   \Ensure  layer L with each CNOT operating on neighbor qubits
  \Function {Sort}{L}
-    \If {$\exists \, CNOT(q_i, q_j)$ with $i, j \leq \frac{n}{2}$} 
-   	\State{// $\exists \, CNOT(q_k, q_l)$ with $k, l > \frac{n}{2}$}
+    \If {$\exists \, \operatorname{CNOT}(q_i, q_j)$ with $i, j \leq \frac{n}{2}$} 
+   	\State{// $\exists \, \operatorname{CNOT} (q_k, q_l)$ with $k, l > \frac{n}{2}$}
 	\State{SWAP ($q_{i+1}$, $q_j$)}
-	\State{SWAP($q_{k+1}$, $q_l$)}
+	\State{ SWAP($q_{k+1}$, $q_l$)}
 	\State{L = L \textbackslash \{$q_i$,  $q_{i+1}$,  $q_{k}$,  $q_{k+1}$\}}
     \Else
-	\State{// $\exists \, CNOT(q_{\frac{n}{2}}, q_l)$ with $l > \frac{n}{2}$}
-	\State{// and $\exists \, CNOT(q_i, q_{l-1})$ with $i < \frac{n}{2}$}
+	\State{// $\exists \, \operatorname{CNOT} (q_{\frac{n}{2}}, q_l)$ with $l > \frac{n}{2}$}
+	\State{// and $\exists \, \operatorname{CNOT} (q_i, q_{l-1})$ with $i < \frac{n}{2}$}
 	 \State{SWAP ($q_{\frac{n}{2}}$, $q_{l-1}$)}
 	  \State{SWAP ($q_i$, $q_{\frac{n}{2}-1}$)}
 	  \State{L = L \textbackslash \{$q_{\frac{n}{2}-1}$,  $q_{\frac{n}{2}}$,  $q_{l-1}$,  $q_{l}$\}}

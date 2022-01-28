@@ -12,55 +12,62 @@ Both the execution time and required amount of resource for inter-node communica
 
 Dividing the given quantum circuit into several fragments one of the main jobs for a distributed quantum compiler.  In the process of partitioning the given quantum circuit, the distributed quantum compiler has to minimize the number of inter-processor communication in order to reduce the delay in the entire circuit execution.  
 
-The work \cite{exhaustivesearch} proposed an exhaustive-search-based algorithm to find a partition of the given quantum circuit with the minimum number of quantum teleportation between two quantum processors.
-
-The work \cite{hypergraph} applied the heuristic algorithm for a hypergraph partitioning problem in order to minimize the number of inter-processor communication, which can be applied to more than two quantum processors.
-
-The work \cite{genetic} tackled the minimization of interprocessor communication by using the genetic algorithm and demonstrated its advantage over random search over the search space.
-
-The work \cite{dynamic} converted the given quantum circuit into a bi-partite graph and the gates and qubits are assigned to each part of the graph.  Then, the graph was partitioned into $K$ parts which minimizes the number of non-local CNOTs.
-
-The work \cite{Kernighahn-Lin} used the Kernighahn-Lin algorithm, which is one of the heuristic algorithms for the graph partitioning problem, to find arbitrary number of partition with the smallest number of interprocessor communication.
-
-The work \cite{WQCP} proposed a new scheme for reducing interprocessor communication called window-based quantum circuit partitoning, or WQCP in short.  This approach combined reduction of both telegate and teledata opportunities. 
-
-The work \cite{matrix} suggested another algorithm for minimizing the interprocessor communication which consists of two phases by using the connectivity-matrix-based representation of a quantum circuit.
-In the first phase, it proposed two objective functions to minimize the number of non-local CNOTs and difference between the number of qubits in two partitioning.  In the second phase, two heuristics were also proposed two other heuristics to minimize the number of quantum teleportation required.
+Severals algorithm for finding the quantum circuit partition with minimum number of inter-processor communications have been proposed and these algorithms are based on exhaustive search  \cite{exhaustivesearch}, graph partitioning \cite{Kernighahn-Lin}, hypergraph partitioning \cite{hypergraph}, genetic algorithm \cite{genetic}, dynamic programming \cite{dynamic}, window-based quantum circuit partitioning \cite{WQCP} , and connectivity matrix of the quantum circuit \cite{matrix}.
 
 \section{Quantum Compiler For Distributed Quantum Computing}
 
-The work \cite{distributedquantumcompiler} discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
+Ferrari et al. \cite{distributedquantumcompiler} discussed the design of a general-purpose, efficient, and effective distributed quantum computer. General purpose means no assumption about the given quantum circuit. Efficient means polynomial time complexity that grows polynomially with the number of qubits and linearly with the circuit depth.  Effective assures a polynomial worst-case overhead in terms both depth of the compiled circuit, the number of entanglement generation.
 
  This study also derived the analytical upper bound of the circuit depth both for the entanglement-based non-local operation and the data-qubit-swapping-based non-local operation.
  
  The depth overhead of the entanglement-swapping-based strategy would be at most 
  
   \begin{equation}
- \frac{n}{2}d_{es}
+\frac{n}{2} \operatorname{d_{es}}
   \end{equation}
   
  \begin{equation}
- d_{es} = c_{le} + c_{bsm} + c_{cx}
+  \operatorname{d_{es}} =  \operatorname{c_{le}} +  \operatorname{c_{bsm}} +  \operatorname{c_{cx}}
   \end{equation} 
  
   On the other hand, the depth overhead of the data-qubit-swapping strategy is
   
    \begin{equation} 
-  \frac{n}{4}d_{qs} + d'_{qs}
+  \frac{n}{4} \operatorname{d_{qs}} +  \operatorname{d'_{qs}}
    \end{equation} 
    
    \begin{equation} 
-   d_{qs} = 3(c_{le} + c_{bsm} + c_{cx})
+    \operatorname{d_{qs}}= 3( \operatorname{c_{le}} +  \operatorname{c_{bsm}} +  \operatorname{c_{cx}})
     \end{equation}
     
   \begin{equation}
-   d'_{qs} = c_{le} + c_{cx}
+    \operatorname{d'_{qs}} =  \operatorname{c_{le}} + \operatorname{ c_{cx}}
    \end{equation}
   
   $n$ is the number of qubits, $c_{le}$ is the number of layers required to perform the link entanglement, $c_{bms}$ is that to perform entanglement swapping, $c_{cx}$ is that to perform remote CNOTs.
   This study mentions that parameters $c_{le}$, $c_{bms}$, $c_{cx}$ heavily depends on the underlying hardware architecture.
   
   It also compare the performance of both strategies with the previous work \cite{hypergraph}.  It experimentally demonstrated that the entanglement-swapping-based strategy requires less number of layers for link generation, and the data-qubit-swapping-based strategy requires less circuit depth, on the worst network topology (the linear topology with one qubit on an each processor).
+
+\newpage
+
+\section{Toward Experimental Realization of Distributed Quantum Computing} 
+
+Jiang et al. \cite{jiang} proposed a method to perform distributed quantum computing even by using 5-qubit noisy processors and noisy quantum links. 
+
+Nickerson et al. \cite{nickerson} proposed a protocol to perform distributed quantum computing which utilizes topological codes to perform purification in the processor and also states that this protocol works if the error rate of quantum links is less than 10 \% and that of quantum processor for initialization, state manipulation, and measurement is less than 0.82 \%
+
+Oi et al. \cite{oi} proposed an architecture for distributed, fault-tolerant quantum computing that enables scalable that achieves scalable quantum error correction.
+
+Daiss et al. \cite{daiss} experimentally achieved a remote quantum gate and successfully implemented four Bell states.
+
+Kim et al. \cite{kim} proposed an architecture for a large-scale quantum computing that combines ion-trap and optical technologies.
+
+LaRacuente \cite{laracuente} proposed an architecture of a superconducting chiplet that connects the physical processor and microwave links.
+
+Van Meter et al. \cite{van} discusses required technology stack for distributed quantum computing in terms of various hardware technologies and software that manipulates these technologies.
+
+
 
 
 %%% Local Variables:
